@@ -1,3 +1,34 @@
+#' Clean a ggplot
+#'
+#' @param grid
+#' @param x_lines
+#' @param y_lines
+#' @param legend_position
+#' @param plot_margin_in
+#' @param plot_margin_top_in
+#' @param caption_margin
+#' @param title_margin
+#' @param subtitle_margin
+#' @param borderizer
+#' @param font
+#' @param text_size
+#' @param title_size
+#' @param subtitle_size
+#' @param caption_size
+#' @param legend_title_size
+#' @param legend_title_face
+#' @param text_color
+#' @param grid_color
+#' @param no_axis
+#' @param axis_label_face
+#' @param axis_line_width
+#' @param grid_line_width
+#' @param x_axis_label_angle
+#'
+#' @return
+#' @export
+#'
+#' @examples
 theme_epsilon <- function(grid=FALSE,
                           x_lines=FALSE,
                           y_lines=FALSE,
