@@ -1,4 +1,3 @@
-
 theme_epsilon <- function(grid=FALSE,
                           x_lines=FALSE,
                           y_lines=FALSE,
