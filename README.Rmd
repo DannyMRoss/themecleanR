@@ -50,15 +50,9 @@ plot + theme_clean()
 
 # add notes and sources
 plot + 
-  labs(caption=notes_format(c("",
-                              "Iris dataset: Anderson, 1936; Fisher, 1936."))) + 
+  labs(caption=notes_format(c("Sepal measurements in cm.",
+                              "Anderson, 1936; Fisher, 1936."))) + 
   theme_clean()
-
-plot + 
-  labs(caption=notes_format(c("",
-                              "Iris dataset: Anderson, 1936; Fisher, 1936."))) + 
-  theme_clean()
-
 ```
 
 

@@ -16,8 +16,6 @@ You can install the development version of themecleanR from
 ``` r
 # install.packages("devtools")
 devtools::install_github("DannyMRoss/themecleanR")
-#> Skipping install of 'themecleanR' from a github remote, the SHA1 (44ee58d9) has not changed since last install.
-#>   Use `force = TRUE` to force installation
 ```
 
 ## Example
@@ -46,3 +44,14 @@ plot + theme_clean()
 ```
 
 <img src="man/figures/README-example-2.png" width="100%" />
+
+``` r
+
+# add notes and sources
+plot + 
+  labs(caption=notes_format(c("Sepal measurements in cm.",
+                              "Anderson, 1936; Fisher, 1936."))) + 
+  theme_clean()
+```
+
+<img src="man/figures/README-example-3.png" width="100%" />
