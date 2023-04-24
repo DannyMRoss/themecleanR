@@ -1,26 +1,25 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# themepsilon
+# themecleanR
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of themepsilon is to create clean ggplots for reports
+The goal of themecleanR is to create clean ggplots for reports
 
 ## Installation
 
-You can install the development version of themepsilon from
+You can install the development version of themecleanR from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("DannyMRoss/themepsilon")
+devtools::install_github("DannyMRoss/themecleanR")
 ```
 
 ## Example
 
 ``` r
-library(themepsilon)
-## basic example code
+#
 ```
