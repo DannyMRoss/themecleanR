@@ -51,8 +51,8 @@ plot + theme_clean()
 # add notes and sources
 plot + 
   labs(caption=notes_format(c("Sepal measurements in cm.",
-                              "Anderson, 1936; Fisher, 1936."))) + 
-  theme_clean(legend_title_size = 11)
+                              "Iris data: Anderson, 1936; Fisher, 1936."))) + 
+  theme_clean()
 ```
 
 
