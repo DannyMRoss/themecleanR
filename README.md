@@ -51,7 +51,7 @@ plot + theme_clean()
 plot + 
   labs(caption=notes_format(c("Sepal measurements in cm.",
                               "Anderson, 1936; Fisher, 1936."))) + 
-  theme_clean()
+  theme_clean(legend_title_size = 11)
 ```
 
 <img src="man/figures/README-example-3.png" width="100%" />
