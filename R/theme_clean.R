@@ -98,5 +98,12 @@ theme_clean <- function(grid=FALSE,
     t <- t + theme(axis.line=element_blank(), axis.ticks = element_blank())
   }
 
-  return(t)
+  # apply color palette and default expansion
+  out <-list(t,
+             scale_color_clean(),
+             scale_fill_clean(),
+             scale_x_continuous(expand=expansion(mult=c(0,.05))),
+             scale_y_continuous(expand=expansion(mult=c(0,.05))))
+
+  return(out)
 }
