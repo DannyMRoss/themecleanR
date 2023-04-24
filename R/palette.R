@@ -1,4 +1,4 @@
-
+# Colors for clean palette
 clean_colors <- c("#1F4E79", "#D00000", "#C49500", "#517D33",
                   "#9B4F96", "#00A3AD", "#FF5733", "#FFB6C1",
                   "#F2D49B", "#C7E5F0")
