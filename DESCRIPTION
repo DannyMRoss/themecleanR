@@ -2,8 +2,7 @@ Package: themecleanR
 Title: Clean themes and formatting for ggplots
 Version: 0.0.0.9000
 Authors@R: 
-    person("Daniel", "Ross", , "dannymross@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+    person("Daniel", "Ross", , "dannymross@gmail.com", role = c("aut", "cre"))
 Description: Theme functions and caption formatting for report ready figures.
 Imports: ggplot2
 License: MIT + file LICENSE
