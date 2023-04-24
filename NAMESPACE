@@ -2,4 +2,5 @@
 
 export(atopify)
 export(notes_format)
-export(themecleanR)
+export(theme_clean)
+import(ggplot2)

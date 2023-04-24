@@ -1,5 +1,6 @@
 #' Clean a ggplot
 #'
+#' @import ggplot2
 #' @param grid Add x- and y-axis grid lines
 #' @param x_lines Add x-axis vertical grid lines
 #' @param y_lines Add y-axis horizontal grid lines
@@ -24,10 +25,8 @@
 #' @param grid_line_width Grid line width
 #' @param x_axis_label_angle X-axis label angle
 #'
-#' @return
+#' @returns Theme function
 #' @export
-#'
-#' @examples
 theme_clean <- function(grid=FALSE,
                           x_lines=FALSE,
                           y_lines=FALSE,

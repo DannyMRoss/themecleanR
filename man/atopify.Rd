@@ -7,7 +7,12 @@
 atopify(A, i)
 }
 \arguments{
-\item{i}{}
+\item{A}{Vector to atopify}
+
+\item{i}{Recursion index}
+}
+\value{
+atopified caption vector
 }
 \description{
 atopify helper function for notes formatting

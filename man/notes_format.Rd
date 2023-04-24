@@ -4,10 +4,15 @@
 \alias{notes_format}
 \title{Clean caption element of ggplot}
 \usage{
-notes_format(A, ct = "Notes & Sources:")
+notes_format(caption, caption_title = "Notes & Sources:")
 }
 \arguments{
-\item{ct}{}
+\item{caption}{Vector of caption lines}
+
+\item{caption_title}{Captiin title}
+}
+\value{
+Formatted caption
 }
 \description{
 Clean caption element of ggplot

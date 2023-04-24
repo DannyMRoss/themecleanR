@@ -5,6 +5,7 @@ Authors@R:
     person("Daniel", "Ross", , "dannymross@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: Theme functions and caption formatting for report ready figures.
+Imports: ggplot2
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
