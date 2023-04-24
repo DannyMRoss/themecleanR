@@ -1,29 +1,28 @@
 #' Clean a ggplot
 #'
-#' @param grid
-#' @param x_lines
-#' @param y_lines
-#' @param legend_position
-#' @param plot_margin_in
-#' @param plot_margin_top_in
-#' @param caption_margin
-#' @param title_margin
-#' @param subtitle_margin
-#' @param borderizer
-#' @param font
-#' @param text_size
-#' @param title_size
-#' @param subtitle_size
-#' @param caption_size
-#' @param legend_title_size
-#' @param legend_title_face
-#' @param text_color
-#' @param grid_color
-#' @param no_axis
-#' @param axis_label_face
-#' @param axis_line_width
-#' @param grid_line_width
-#' @param x_axis_label_angle
+#' @param grid Add x- and y-axis grid lines
+#' @param x_lines Add x-axis vertical grid lines
+#' @param y_lines Add y-axis horizontal grid lines
+#' @param legend_position Change legend position
+#' @param plot_margin_in Plot margin (inches)
+#' @param caption_margin Caption margin (inches)
+#' @param title_margin Title margin (inches)
+#' @param subtitle_margin Subtitle margin (inches)
+#' @param borderizer Margins so plot fits in LaTeX borderizer
+#' @param font Font name
+#' @param text_size Default text size for axes (points)
+#' @param title_size Title size (points)
+#' @param subtitle_size Subtitle size (points)
+#' @param caption_size Subtitle size (points)
+#' @param legend_title_size Legend title size (points)
+#' @param legend_title_face Legend title font face ("plain", "bold", "italic", or "bold.italic")
+#' @param text_color Text color
+#' @param grid_color Grid line color
+#' @param no_axis Remove axis lines and ticks
+#' @param axis_label_face Axis label font face ("plain", "bold", "italic", or "bold.italic")
+#' @param axis_line_width Axis line width
+#' @param grid_line_width Grid line width
+#' @param x_axis_label_angle X-axis label angle
 #'
 #' @return
 #' @export
@@ -34,7 +33,6 @@ theme_clean <- function(grid=FALSE,
                           y_lines=FALSE,
                           legend_position="bottom",
                           plot_margin_in=0.5,
-                          plot_margin_top_in=0.5,
                           caption_margin=0.25,
                           title_margin=0,
                           subtitle_margin=0.25,
@@ -80,7 +78,7 @@ theme_clean <- function(grid=FALSE,
              legend.text = element_text(colour = text_color),
              legend.background = element_rect(fill=NA),
              legend.key = element_rect(fill=NA),
-             plot.margin = margin(plot_margin_top_in, plot_margin_in, plot_margin_in, plot_margin_in, unit="in"))
+             plot.margin = margin(plot_margin_in, plot_margin_in, plot_margin_in, plot_margin_in, unit="in"))
 
   if (grid==TRUE){
     t <- t + theme(panel.grid.major=element_line(color=grid_color, linewidth=grid_line_width),
