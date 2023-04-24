@@ -24,7 +24,7 @@ The goal of themecleanR is to create clean ggplots for reports
 
 You can install the development version of themecleanR from [GitHub](https://github.com/) with:
 
-``` r
+``` {r}
 # install.packages("devtools")
 devtools::install_github("DannyMRoss/themecleanR")
 ```

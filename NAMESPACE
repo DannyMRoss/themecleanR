@@ -2,4 +2,4 @@
 
 export(atopify)
 export(notes_format)
-export(theme_epsilon)
+export(themecleanR)
