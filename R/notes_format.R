@@ -1,12 +1,4 @@
 #' atopify helper function for notes formatting
-#'
-#' @param A
-#' @param i
-#'
-#' @return
-#' @export
-#'
-#' @examples
 atopify <- function(A, i){
   if(i==length(A)){
     return(bquote(atop(textstyle(.(A[i])))))
@@ -17,15 +9,10 @@ atopify <- function(A, i){
 
 #' Clean caption element of ggplot
 #'
-#' @param A
-#' @param ct
-#'
-#' @return
-#' @export
-#'
-#' @examples
-notes_format <- function(A, ct="Notes & Sources:"){
+#' @param caption Vector of caption lines
+#' @param caption_title Captiin title
+notes_format <- function(caption, caption_title="Notes & Sources:"){
   return(bquote(atop(NA,
-                     atop(textstyle(bold(.(ct))),
-                          .(atopify(A, 1))))))
+                     atop(textstyle(bold(.(caption_title))),
+                          .(atopify(caption, 1))))))
 }
