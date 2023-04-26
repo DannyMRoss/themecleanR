@@ -4,7 +4,8 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Daniel", "Ross", , "dannymross@gmail.com", role = c("aut", "cre"))
 Description: Theme functions and caption formatting for report ready figures.
-Imports: ggplot2
+Imports: ggplot2,
+         extrafont
 License: file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

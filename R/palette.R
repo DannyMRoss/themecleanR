@@ -1,7 +1,9 @@
 # Colors for clean palette
 clean_colors <- c("#1F4E79", "#D00000", "#C49500", "#517D33",
                   "#9B4F96", "#00A3AD", "#FF5733", "#FFB6C1",
-                  "#F2D49B", "#C7E5F0")
+                  "#F2D49B", "#C7E5F0",
+                  "#F8766D", "#C49A6C", "#53B3CB", "#00BA38", "#FC8D62", "#8DA0CB", "#66C2A5", "#E78AC3", "#A6D854",
+                  "#FF7F00", "#B2DF8A", "#33A02C", "#FB9A99", "#BEBADA", "#CCEBC5", "#FFC0CB", "#D9D9D9", "#BC80BD", "#CEDB9C", "#FFFFB3")
 
 #' Clean color palette
 #'
