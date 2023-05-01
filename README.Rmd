@@ -54,19 +54,3 @@ theme_clean(plot,
             font = "Palatino Linotype",
             caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."))
 ```
-
-```{r example2}
-attach(mpg)
-
-plot2 <- ggplot(mpg, aes(cty, hwy)) + 
-  geom_point() + 
-  facet_grid(manufacturer ~ ., scales = "free", space = "free")
-
-# facet grid
-plot2
-
-#
-theme_clean(plot2)
-```
-
-

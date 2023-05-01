@@ -56,24 +56,3 @@ theme_clean(plot,
 ```
 
 <img src="man/figures/README-example1-3.png" width="100%" />
-
-``` r
-attach(mpg)
-
-plot2 <- ggplot(mpg, aes(cty, hwy)) + 
-  geom_point() + 
-  facet_grid(manufacturer ~ ., scales = "free", space = "free")
-
-# facet grid
-plot2
-```
-
-<img src="man/figures/README-example2-1.png" width="100%" />
-
-``` r
-
-#
-theme_clean(plot2)
-```
-
-<img src="man/figures/README-example2-2.png" width="100%" />
