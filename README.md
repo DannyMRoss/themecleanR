@@ -42,7 +42,7 @@ plot
 ``` r
 
 # cleaned ggplot
-plot + theme_clean()
+theme_clean(plot)
 ```
 
 <img src="man/figures/README-example1-2.png" width="100%" />
@@ -50,7 +50,30 @@ plot + theme_clean()
 ``` r
 
 # add notes and sources
-plot + theme_clean(font = "Palatino Linotype", caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."))
+theme_clean(plot,
+            font = "Palatino Linotype",
+            caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."))
 ```
 
 <img src="man/figures/README-example1-3.png" width="100%" />
+
+``` r
+attach(mpg)
+
+plot2 <- ggplot(mpg, aes(cty, hwy)) + 
+  geom_point() + 
+  facet_grid(manufacturer ~ ., scales = "free", space = "free")
+
+# facet grid
+plot2
+```
+
+<img src="man/figures/README-example2-1.png" width="100%" />
+
+``` r
+
+#
+theme_clean(plot2)
+```
+
+<img src="man/figures/README-example2-2.png" width="100%" />

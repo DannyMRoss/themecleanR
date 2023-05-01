@@ -1,11 +1,14 @@
 #' Clean a ggplot
 #'
 #' @import ggplot2
+#' @param p ggplot object
 #' @param grid Add x- and y-axis grid lines
 #' @param x_lines Add x-axis vertical grid lines
 #' @param y_lines Add y-axis horizontal grid lines
 #' @param legend_position Change legend position
 #' @param plot_margin_in Plot margin (inches)
+#' @param caption Caption as a vector, each element appears on new line
+#' @param caption_title Caption title
 #' @param caption_margin Caption margin (inches)
 #' @param title_margin Title margin (inches)
 #' @param subtitle_margin Subtitle margin (inches)
@@ -27,7 +30,8 @@
 #'
 #' @returns Theme function
 #' @export
-theme_clean <- function(grid=FALSE,
+theme_clean <- function(p,
+                        grid=FALSE,
                         x_lines=FALSE,
                         y_lines=FALSE,
                         legend_position="bottom",
@@ -51,7 +55,8 @@ theme_clean <- function(grid=FALSE,
                         axis_label_face="plain",
                         axis_line_width=0.5,
                         grid_line_width=0.1,
-                        x_axis_label_angle=0){
+                        x_axis_label_angle=0,
+                        ...){
 
   if (borderizer==TRUE){
     subtitle_margin = 0.3
@@ -104,12 +109,25 @@ theme_clean <- function(grid=FALSE,
   out <-list(t,
              scale_color_clean(),
              scale_fill_clean(),
-             scale_x_continuous(expand=expansion(mult=c(0,.05))),
-             scale_y_continuous(expand=expansion(mult=c(0,.05))))
+             theme(...))
 
   if(!is.null(caption)){
     out <- append(out, list(labs(caption=notes_format(caption, caption_title))))
   }
 
-  return(out)
+  xn <- c(quo_name(p$mapping$x))
+  yn <- c(quo_name(p$mapping$y))
+  xnum <- is.numeric(p$data[[xn]])
+  ynum <- is.numeric(p$data[[yn]])
+
+  if(xnum){
+    out <- append(out, list(scale_x_continuous(expand=expansion(mult=c(0,.05)))))
+  }
+
+  if(ynum){
+    out <- append(out, list(scale_y_continuous(expand=expansion(mult=c(0,.05)))))
+  }
+
+  return(p + out)
 }
+

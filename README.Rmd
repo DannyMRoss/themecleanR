@@ -47,9 +47,26 @@ plot <- ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) +
 plot
 
 # cleaned ggplot
-plot + theme_clean()
+theme_clean(plot)
 
 # add notes and sources
-plot + theme_clean(font = "Palatino Linotype", caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."))
+theme_clean(plot,
+            font = "Palatino Linotype",
+            caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."))
 ```
+
+```{r example2}
+attach(mpg)
+
+plot2 <- ggplot(mpg, aes(cty, hwy)) + 
+  geom_point() + 
+  facet_grid(manufacturer ~ ., scales = "free", space = "free")
+
+# facet grid
+plot2
+
+#
+theme_clean(plot2)
+```
+
 
