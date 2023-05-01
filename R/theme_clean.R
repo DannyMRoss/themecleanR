@@ -1,6 +1,8 @@
 #' Clean a ggplot
 #'
 #' @import ggplot2
+#' @import extrafont
+#'
 #' @param p ggplot object
 #' @param grid Add x- and y-axis grid lines
 #' @param x_lines Add x-axis vertical grid lines
@@ -26,13 +28,18 @@
 #' @param axis_label_face Axis label font face ("plain", "bold", "italic", or "bold.italic")
 #' @param axis_line_width Axis line width
 #' @param grid_line_width Grid line width
+#' @param x_axis_label_angle X-axis label angle
 #' @param save_filename Optional filename is save plot to
 #' @param save_paper_size Paper size of saved plot
 #' @param save_orientation Orientation of saved plot
 #' @param save_width Manually set paper width
 #' @param save_height Manually set paper height
+#'
 #' @returns Theme function
 #' @export
+#'
+#' @examples
+#' theme_clean(ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point())
 theme_clean <- function(p,
                         grid=FALSE,
                         x_lines=FALSE,
@@ -134,8 +141,8 @@ theme_clean <- function(p,
 
   if (!is.null(save_width) && !is.null(save_height)) {
     # Use custom width and height if provided
-    plot_width <- width
-    plot_height <- height
+    plot_width <- save_width
+    plot_height <- save_height
   } else if (save_paper_size == "letter") {
     # Use letter paper size if selected
     plot_width <- 11

@@ -5,11 +5,14 @@
 \title{Clean a ggplot}
 \usage{
 theme_clean(
+  p,
   grid = FALSE,
   x_lines = FALSE,
   y_lines = FALSE,
   legend_position = "bottom",
   plot_margin_in = 0.5,
+  caption = c(),
+  caption_title = "Notes & Sources:",
   caption_margin = 0,
   title_margin = 0,
   subtitle_margin = 0.25,
@@ -27,10 +30,18 @@ theme_clean(
   axis_label_face = "plain",
   axis_line_width = 0.5,
   grid_line_width = 0.1,
-  x_axis_label_angle = 0
+  x_axis_label_angle = 0,
+  ...,
+  save_filename = NULL,
+  save_paper_size = "ledger",
+  save_orientation = "landscape",
+  save_width = NULL,
+  save_height = NULL
 )
 }
 \arguments{
+\item{p}{ggplot object}
+
 \item{grid}{Add x- and y-axis grid lines}
 
 \item{x_lines}{Add x-axis vertical grid lines}
@@ -40,6 +51,10 @@ theme_clean(
 \item{legend_position}{Change legend position}
 
 \item{plot_margin_in}{Plot margin (inches)}
+
+\item{caption}{Caption as a vector, each element appears on new line}
+
+\item{caption_title}{Caption title}
 
 \item{caption_margin}{Caption margin (inches)}
 
@@ -76,10 +91,23 @@ theme_clean(
 \item{grid_line_width}{Grid line width}
 
 \item{x_axis_label_angle}{X-axis label angle}
+
+\item{save_filename}{Optional filename is save plot to}
+
+\item{save_paper_size}{Paper size of saved plot}
+
+\item{save_orientation}{Orientation of saved plot}
+
+\item{save_width}{Manually set paper width}
+
+\item{save_height}{Manually set paper height}
 }
 \value{
 Theme function
 }
 \description{
 Clean a ggplot
+}
+\examples{
+theme_clean(ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point())
 }
