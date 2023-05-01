@@ -119,14 +119,14 @@ theme_clean <- function(p,
 
   xn <- c(quo_name(p$mapping$x))
   yn <- c(quo_name(p$mapping$y))
-  xnum <- is.numeric(p$data[[xn]])
-  ynum <- is.numeric(p$data[[yn]])
+  x_aes <- p$data[[xn]]
+  y_aes <- p$data[[yn]]
 
-  if(xnum){
+  if(is.numeric(x_aes)){
     out <- append(out, list(scale_x_continuous(expand=expansion(mult=c(0,.05)))))
   }
 
-  if(ynum){
+  if(is.numeric(y_aes)){
     out <- append(out, list(scale_y_continuous(expand=expansion(mult=c(0,.05)))))
   }
 
@@ -161,9 +161,10 @@ theme_clean <- function(p,
   }
 
   if (!is.null(save_filename)) {
-    ggsave(plot = p_cleaned, filename = save_filename, width = plot_width, height = plot_height, units="in")
+    cairo_pdf(save_filename, width=plot_width, height=plot_height)
+    print(p_cleaned)
+    dev.off()
   }
 
   return(p_cleaned)
 }
-

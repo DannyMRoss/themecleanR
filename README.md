@@ -56,3 +56,14 @@ theme_clean(plot,
 ```
 
 <img src="man/figures/README-example1-3.png" width="100%" />
+
+``` r
+
+# save plot
+theme_clean(plot,
+            font = "Palatino Linotype",
+            caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."),
+            save_filename = "man/figures/iris.pdf", save_paper_size = "letter", save_orientation = "landscape")
+```
+
+<img src="man/figures/README-example1-4.png" width="100%" />

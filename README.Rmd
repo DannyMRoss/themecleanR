@@ -53,4 +53,11 @@ theme_clean(plot)
 theme_clean(plot,
             font = "Palatino Linotype",
             caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."))
+
+# save plot
+theme_clean(plot,
+            font = "Palatino Linotype",
+            caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."),
+            save_filename = "man/figures/iris.pdf", save_paper_size = "letter", save_orientation = "landscape")
 ```
+
