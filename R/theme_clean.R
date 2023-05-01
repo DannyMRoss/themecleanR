@@ -26,8 +26,11 @@
 #' @param axis_label_face Axis label font face ("plain", "bold", "italic", or "bold.italic")
 #' @param axis_line_width Axis line width
 #' @param grid_line_width Grid line width
-#' @param x_axis_label_angle X-axis label angle
-#'
+#' @param save_filename Optional filename is save plot to
+#' @param save_paper_size Paper size of saved plot
+#' @param save_orientation Orientation of saved plot
+#' @param save_width Manually set paper width
+#' @param save_height Manually set paper height
 #' @returns Theme function
 #' @export
 theme_clean <- function(p,
@@ -56,13 +59,12 @@ theme_clean <- function(p,
                         axis_line_width=0.5,
                         grid_line_width=0.1,
                         x_axis_label_angle=0,
-                        ...){
-
-  if (borderizer==TRUE){
-    subtitle_margin = 0.3
-    plot_margin_in = 0.5
-    title_margin = 0.55
-  }
+                        ...,
+                        save_filename=NULL,
+                        save_paper_size="ledger",
+                        save_orientation="landscape",
+                        save_width=NULL,
+                        save_height=NULL){
 
   t <- theme(text=element_text(size=text_size, family=font, colour=text_color),
              plot.title = element_text(hjust=0.5, face="bold", size=title_size, margin=margin(t=title_margin, unit="in")),
@@ -128,6 +130,40 @@ theme_clean <- function(p,
     out <- append(out, list(scale_y_continuous(expand=expansion(mult=c(0,.05)))))
   }
 
-  return(p + out)
+  p_cleaned <- p + out
+
+  if (!is.null(save_width) && !is.null(save_height)) {
+    # Use custom width and height if provided
+    plot_width <- width
+    plot_height <- height
+  } else if (save_paper_size == "letter") {
+    # Use letter paper size if selected
+    plot_width <- 11
+    plot_height <- 8.5
+  } else {
+    # Use ledger paper size by default
+    plot_width <- 17
+    plot_height <- 11
+  }
+
+  if (save_orientation == "portrait") {
+    # Flip dimensions for portrait orientation
+    temp <- plot_width
+    plot_width <- plot_height
+    plot_height <- temp
+  }
+
+
+  if (borderizer){
+    subtitle_margin = 0.3
+    plot_margin_in = 0.5
+    title_margin = 0.55
+  }
+
+  if (!is.null(save_filename)) {
+    ggsave(plot = p_cleaned, filename = save_filename, width = plot_width, height = plot_height, units="in")
+  }
+
+  return(p_cleaned)
 }
 
