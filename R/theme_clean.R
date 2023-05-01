@@ -122,11 +122,11 @@ theme_clean <- function(p,
   x_aes <- p$data[[xn]]
   y_aes <- p$data[[yn]]
 
-  if(is.numeric(x_aes)){
+  if(is.null(x_aes) | is.numeric(x_aes)){
     out <- append(out, list(scale_x_continuous(expand=expansion(mult=c(0,.05)))))
   }
 
-  if(is.numeric(y_aes)){
+  if(is.null(y_aes) | is.numeric(y_aes)){
     out <- append(out, list(scale_y_continuous(expand=expansion(mult=c(0,.05)))))
   }
 
