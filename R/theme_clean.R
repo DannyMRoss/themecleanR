@@ -32,6 +32,8 @@ theme_clean <- function(grid=FALSE,
                         y_lines=FALSE,
                         legend_position="bottom",
                         plot_margin_in=0.5,
+                        caption=c(),
+                        caption_title="Notes & Sources:",
                         caption_margin=0,
                         title_margin=0,
                         subtitle_margin=0.25,
@@ -104,6 +106,10 @@ theme_clean <- function(grid=FALSE,
              scale_fill_clean(),
              scale_x_continuous(expand=expansion(mult=c(0,.05))),
              scale_y_continuous(expand=expansion(mult=c(0,.05))))
+
+  if(!is.null(caption)){
+    out <- append(out, list(labs(caption=notes_format(caption, caption_title))))
+  }
 
   return(out)
 }

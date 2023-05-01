@@ -34,6 +34,7 @@ devtools::install_github("DannyMRoss/themecleanR")
 ```{r example1}
 attach(iris)
 library(ggplot2)
+library(extrafont)
 library(themecleanR)
 
 # make plot
@@ -49,9 +50,6 @@ plot
 plot + theme_clean()
 
 # add notes and sources
-plot + 
-  labs(caption=notes_format(c("Sepal measurements in cm.",
-                              "Iris data: Anderson, 1936; Fisher, 1936."))) + 
-  theme_clean(font = "Palatino Linotype")
+plot + theme_clean(font = "Palatino Linotype", caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."))
 ```
 
