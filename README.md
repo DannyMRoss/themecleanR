@@ -67,3 +67,25 @@ theme_clean(plot,
 ```
 
 <img src="man/figures/README-example1-4.png" width="100%" />
+
+``` r
+
+# apply same formatting to multiple plots and save in a single pdf
+plot2 <- ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species)) +
+  labs(title="Iris Flowers", subtitle="Petal Length vs. Width",
+       x="Petal Length", y="Petal Width") +
+  geom_point()
+
+theme_clean(list(plot, plot2),
+            font = "Palatino Linotype",
+            caption = c("Measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."),
+            save_filename = "man/figures/iris2.pdf", save_paper_size = "letter", save_orientation = "landscape")
+#> [[1]]
+```
+
+<img src="man/figures/README-example1-5.png" width="100%" />
+
+    #> 
+    #> [[2]]
+
+<img src="man/figures/README-example1-6.png" width="100%" />
