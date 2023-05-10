@@ -124,20 +124,32 @@ theme_clean <- function(p,
     out <- append(out, list(labs(caption=notes_format(caption, caption_title))))
   }
 
-  xn <- c(quo_name(p$mapping$x))
-  yn <- c(quo_name(p$mapping$y))
-  x_aes <- p$data[[xn]]
-  y_aes <- p$data[[yn]]
+  xyscale <- function(p_in){
+    xn <- c(quo_name(p_in$mapping$x))
+    yn <- c(quo_name(p_in$mapping$y))
+    x_aes <- p_in$data[[xn]]
+    y_aes <- p_in$data[[yn]]
 
-  if(is.null(x_aes) | is.numeric(x_aes)){
-    out <- append(out, list(scale_x_continuous(expand=expansion(mult=c(0,.05)))))
+    if(is.null(x_aes) | is.numeric(x_aes)){
+      out <- append(out, list(scale_x_continuous(expand=expansion(mult=c(0,.05)))))
+    }
+
+    if(is.null(y_aes) | is.numeric(y_aes)){
+      out <- append(out, list(scale_y_continuous(expand=expansion(mult=c(0,.05)))))
+    }
+
+    p_out <- p_in + out
+    return(p_out)
   }
 
-  if(is.null(y_aes) | is.numeric(y_aes)){
-    out <- append(out, list(scale_y_continuous(expand=expansion(mult=c(0,.05)))))
+  plotlist <- is.list(p) && all(sapply(p, function(p) inherits(p, "ggplot")))
+
+  if(plotlist){
+    p_cleaned <- lapply(p, xyscale)
+  } else{
+    p_cleaned <- xyscale(p)
   }
 
-  p_cleaned <- p + out
 
   if (!is.null(save_width) && !is.null(save_height)) {
     # Use custom width and height if provided
@@ -167,10 +179,20 @@ theme_clean <- function(p,
     title_margin = 0.55
   }
 
+
+
   if (!is.null(save_filename)) {
-    cairo_pdf(save_filename, width=plot_width, height=plot_height)
-    print(p_cleaned)
-    dev.off()
+    if(plotlist){
+      cairo_pdf(save_filename, width=plot_width, height=plot_height, onefile = TRUE)
+      for (i in seq_along(p_cleaned)) {
+        print(p_cleaned[[i]])
+      }
+      dev.off()
+    }else{
+      cairo_pdf(save_filename, width=plot_width, height=plot_height)
+      print(p_cleaned)
+      dev.off()
+    }
   }
 
   return(p_cleaned)
