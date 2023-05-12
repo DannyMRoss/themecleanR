@@ -30,6 +30,18 @@
 #' @param axis_line_width Axis line width
 #' @param grid_line_width Grid line width
 #' @param x_axis_label_angle X-axis label angle
+#' @param lims Set x and y axis limits
+#' @param breaks Set x and y axis breaks
+#' @param labels Set x and y axis labels
+#' @param expand Set x and y axis expansion percentage
+#' @param xlims Set x limits
+#' @param ylims Set y limits
+#' @param xbreaks Set x breaks
+#' @param ybreaks Set y breaks
+#' @param xlabels Set x labels
+#' @param ylabels Set y labels
+#' @param xexpand Set x expansion
+#' @param yexpand Set y expansion
 #' @param save_filename Optional filename is save plot to
 #' @param save_paper_size Paper size of saved plot
 #' @param save_orientation Orientation of saved plot
