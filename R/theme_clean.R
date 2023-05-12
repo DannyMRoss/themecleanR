@@ -67,6 +67,9 @@ theme_clean <- function(p,
                         axis_line_width=0.5,
                         grid_line_width=0.1,
                         x_axis_label_angle=0,
+                        lims=NULL,
+                        breaks=NULL,
+                        labels=NULL,
                         xlims=NULL,
                         ylims=NULL,
                         xbreaks=waiver(),
@@ -137,21 +140,36 @@ theme_clean <- function(p,
     x_aes <- p_in$data[[xn]]
     y_aes <- p_in$data[[yn]]
 
-    if(is.null(x_aes) | is.numeric(x_aes)){
+  if(!is.null(lims)){
+    xlims <- lims
+    ylims <- lims
+  }
+
+  if(!is.null(breaks)){
+    xbreaks <- breaks
+    ybreaks <- breaks
+  }
+
+  if(!is.null(labels)){
+    xlabels <- labels
+    ylabels <- labels
+  }
+
+  if(is.null(x_aes) | is.numeric(x_aes)){
         out <- append(out, list(scale_x_continuous(limits=xlims,
                                                    breaks=xbreaks,
                                                    labels=xlabels,
                                                    expand=expansion(mult=c(0,.05)))))
     }
 
-    if(is.null(y_aes) | is.numeric(y_aes)){
+  if(is.null(y_aes) | is.numeric(y_aes)){
       out <- append(out, list(scale_y_continuous(limits=ylims,
                                                  breaks=ybreaks,
                                                  labels=ylabels,
                                                  expand=expansion(mult=c(0,.05)))))
     }
 
-    p_out <- p_in + out
+  p_out <- p_in + out
     return(p_out)
   }
 
