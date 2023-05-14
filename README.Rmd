@@ -55,7 +55,7 @@ theme_clean(plot,
             font = "Palatino Linotype",
             caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."))
 
-# parameters for formatting shortcuts
+# includes parameters for formatting shortcuts
 theme_clean(plot,
             font = "Palatino Linotype",
             caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."),
@@ -92,6 +92,7 @@ USPersonalExpenditure <- melt(USPersonalExpenditure, variable.name = "year", val
 ```
 
 ```{r}
+# bar chart example
 plot3 <- ggplot(USPersonalExpenditure, aes(x=year, y=expenditure, fill=category)) +
   geom_col(position=position_dodge(width = .9), color="black", width = .8) +
   geom_text(aes(label = dollar(expenditure, 1)), 
