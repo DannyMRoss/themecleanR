@@ -52,9 +52,11 @@ theme_clean(plot)
 ``` r
 
 # add notes and sources
+sources <- c("Measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936.")
+
 theme_clean(plot,
             font = "Palatino Linotype",
-            caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."))
+            caption = sources)
 ```
 
 <img src="man/figures/README-example1-3.png" width="100%" />
@@ -64,7 +66,7 @@ theme_clean(plot,
 # includes parameters for formatting shortcuts
 theme_clean(plot,
             font = "Palatino Linotype",
-            caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."),
+            caption = sources,
             xlims=c(0,8), ylims=c(0,5), ylines = TRUE)
 ```
 
@@ -75,7 +77,7 @@ theme_clean(plot,
 # save plot
 theme_clean(plot,
             font = "Palatino Linotype",
-            caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."),
+            caption = sources,
             save_filename = "man/figures/iris.pdf", save_paper_size = "letter", save_orientation = "landscape")
 ```
 
@@ -91,7 +93,7 @@ plot2 <- ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species)) +
 
 theme_clean(list(plot, plot2),
             font = "Palatino Linotype",
-            caption = c("Measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."),
+            caption = sources,
             save_filename = "man/figures/iris2.pdf")
 #> [[1]]
 ```
@@ -105,19 +107,20 @@ theme_clean(list(plot, plot2),
 
 ``` r
 # bar chart example
-plot3 <- ggplot(USPersonalExpenditure, aes(x=year, y=expenditure, fill=category)) +
+plot3 <- ggplot(PersonalExpenditure, aes(x=year, y=expenditure, fill=category)) +
   geom_col(position=position_dodge(width = .9), color="black", width = .8) +
   geom_text(aes(label = dollar(expenditure, 1)), 
             position = position_dodge(width = .9), vjust=-.5, size=3) +
   labs(title="US Personal Expenditures", subtitle="1945 \u2013 1960",
-       y="Expenditures (bn)", x="Year")
+       y="Expenditures (bn)", x="Year", fill=NULL)
 
 sources <- c("Tukey, J. W. (1977) Exploratory Data Analysis. Addison-Wesley.",
              "McNeil, D. R. (1977) Interactive Data Analysis. Wiley.")
 
 theme_clean(plot3, 
             caption = sources, caption_title = "Sources:", 
-            ylabels = dollar, ylims=c(0,100), ybreaks = seq(0,100,25))
+            ylabels = dollar, ybreaks = seq(0,100,25),
+            legend_rows = 2)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-example2-1.png" width="100%" />
