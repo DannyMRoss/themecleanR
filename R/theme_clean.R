@@ -23,6 +23,7 @@
 #' @param caption_size Subtitle size (points)
 #' @param legend_title_size Legend title size (points)
 #' @param legend_title_face Legend title font face ("plain", "bold", "italic", or "bold.italic")
+#' @param legend_rows Number of legend rows
 #' @param text_color Text color
 #' @param grid_color Grid line color
 #' @param no_axis Remove axis lines and ticks
@@ -72,6 +73,7 @@ theme_clean <- function(p,
                         caption_size=11,
                         legend_title_size=11,
                         legend_title_face="bold",
+                        legend_rows=NULL,
                         text_color="black",
                         grid_color="#D3D3D3",
                         no_axis=FALSE,
@@ -143,6 +145,8 @@ theme_clean <- function(p,
   out <-list(t,
              scale_color_clean(),
              scale_fill_clean(),
+             guides(color=guide_legend(nrow = legend_rows)),
+             guides(fill=guide_legend(nrow = legend_rows)),
              theme(...))
 
   if(!is.null(caption)){
@@ -163,6 +167,14 @@ theme_clean <- function(p,
   if(!is.null(breaks)){
     xbreaks <- breaks
     ybreaks <- breaks
+  }
+
+  if(!class(xbreaks)=="waiver" & is.null(xlims)){
+      xlims <- c(min(xbreaks), max(xbreaks))
+  }
+
+  if(!class(ybreaks)=="waiver" & is.null(ylims)){
+      ylims <- c(min(ybreaks), max(ybreaks))
   }
 
   if(!is.null(labels)){
