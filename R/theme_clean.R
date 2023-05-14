@@ -6,8 +6,8 @@
 #'
 #' @param p ggplot object
 #' @param grid Add x- and y-axis grid lines
-#' @param x_lines Add x-axis vertical grid lines
-#' @param y_lines Add y-axis horizontal grid lines
+#' @param xlines Add x-axis vertical grid lines
+#' @param ylines Add y-axis horizontal grid lines
 #' @param legend_position Change legend position
 #' @param plot_margin_in Plot margin (inches)
 #' @param caption Caption as a vector, each element appears on new line
@@ -55,8 +55,8 @@
 #' theme_clean(ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point())
 theme_clean <- function(p,
                         grid=FALSE,
-                        x_lines=FALSE,
-                        y_lines=FALSE,
+                        xlines=FALSE,
+                        ylines=FALSE,
                         legend_position="bottom",
                         plot_margin_in=0.5,
                         caption=c(),
@@ -125,12 +125,12 @@ theme_clean <- function(p,
                    panel.grid.minor=element_line(color=grid_color, linewidth=grid_line_width))
   }
 
-  if (x_lines==TRUE){
+  if (xlines==TRUE){
     t <- t + theme(panel.grid.major.x=element_line(color=grid_color, linewidth=grid_line_width),
                    panel.grid.minor.x=element_line(color=grid_color, linewidth=grid_line_width))
   }
 
-  if (y_lines==TRUE){
+  if (ylines==TRUE){
     t <- t + theme(panel.grid.major.y=element_line(color=grid_color, linewidth=grid_line_width),
                    panel.grid.minor.y=element_line(color=grid_color, linewidth=grid_line_width))
   }
@@ -229,8 +229,6 @@ theme_clean <- function(p,
     plot_margin_in = 0.5
     title_margin = 0.55
   }
-
-
 
   if (!is.null(save_filename)) {
     if(plotlist){

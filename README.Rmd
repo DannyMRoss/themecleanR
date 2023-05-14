@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of themecleanR is to create clean ggplots for reports
+The goal of themecleanR is to create clean(R) ggplots with a more concise syntax.
 
 ## Installation
 
@@ -34,7 +34,8 @@ devtools::install_github("DannyMRoss/themecleanR")
 ```{r example1}
 attach(iris)
 library(ggplot2)
-library(extrafont)
+library(extrafont) # read https://github.com/wch/extrafont for font configuration
+library(scales)
 library(themecleanR)
 
 # make plot
@@ -54,6 +55,12 @@ theme_clean(plot,
             font = "Palatino Linotype",
             caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."))
 
+# parameters for formatting shortcuts
+theme_clean(plot,
+            font = "Palatino Linotype",
+            caption = c("Sepal measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."),
+            xlims=c(0,8), ylims=c(0,5), ylines = TRUE)
+
 # save plot
 theme_clean(plot,
             font = "Palatino Linotype",
@@ -69,6 +76,34 @@ plot2 <- ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species)) +
 theme_clean(list(plot, plot2),
             font = "Palatino Linotype",
             caption = c("Measurements in cm.","Iris data: Anderson, 1936; Fisher, 1936."),
-            save_filename = "man/figures/iris2.pdf", save_paper_size = "letter", save_orientation = "landscape")
+            save_filename = "man/figures/iris2.pdf")
+```
+
+
+```{r include=FALSE}
+library(data.table)
+library(tidyverse)
+USPersonalExpenditure <- copy(datasets::USPersonalExpenditure)
+USPersonalExpenditure <- as.data.frame(USPersonalExpenditure)
+setDT(USPersonalExpenditure)
+USPersonalExpenditure[,category:=c("Food and Tobacco", "Household Operation", "Medical and Health",
+                                "Personal Care", "Private Education")]
+USPersonalExpenditure <- melt(USPersonalExpenditure, variable.name = "year", value.name = "expenditure")
+```
+
+```{r}
+plot3 <- ggplot(USPersonalExpenditure, aes(x=year, y=expenditure, fill=category)) +
+  geom_col(position=position_dodge(width = .9), color="black", width = .8) +
+  geom_text(aes(label = dollar(expenditure, 1)), 
+            position = position_dodge(width = .9), vjust=-.5, size=3) +
+  labs(title="US Personal Expenditures", subtitle="1945 \u2013 1960",
+       y="Expenditures (bn)", x="Year")
+
+sources <- c("Tukey, J. W. (1977) Exploratory Data Analysis. Addison-Wesley.",
+             "McNeil, D. R. (1977) Interactive Data Analysis. Wiley.")
+
+theme_clean(plot3, 
+            caption = sources, caption_title = "Sources:", 
+            ylabels = dollar, ylims=c(0,100), ybreaks = seq(0,100,25))
 ```
 
