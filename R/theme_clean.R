@@ -6,8 +6,8 @@
 #'
 #' @param p ggplot object
 #' @param grid Add x- and y-axis grid lines
-#' @param x_lines Add x-axis vertical grid lines
-#' @param y_lines Add y-axis horizontal grid lines
+#' @param xlines Add x-axis vertical grid lines
+#' @param ylines Add y-axis horizontal grid lines
 #' @param legend_position Change legend position
 #' @param plot_margin_in Plot margin (inches)
 #' @param caption Caption as a vector, each element appears on new line
@@ -23,6 +23,7 @@
 #' @param caption_size Subtitle size (points)
 #' @param legend_title_size Legend title size (points)
 #' @param legend_title_face Legend title font face ("plain", "bold", "italic", or "bold.italic")
+#' @param legend_rows Number of legend rows
 #' @param text_color Text color
 #' @param grid_color Grid line color
 #' @param no_axis Remove axis lines and ticks
@@ -55,8 +56,8 @@
 #' theme_clean(ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point())
 theme_clean <- function(p,
                         grid=FALSE,
-                        x_lines=FALSE,
-                        y_lines=FALSE,
+                        xlines=FALSE,
+                        ylines=FALSE,
                         legend_position="bottom",
                         plot_margin_in=0.5,
                         caption=c(),
@@ -72,6 +73,7 @@ theme_clean <- function(p,
                         caption_size=11,
                         legend_title_size=11,
                         legend_title_face="bold",
+                        legend_rows=NULL,
                         text_color="black",
                         grid_color="#D3D3D3",
                         no_axis=FALSE,
@@ -125,12 +127,12 @@ theme_clean <- function(p,
                    panel.grid.minor=element_line(color=grid_color, linewidth=grid_line_width))
   }
 
-  if (x_lines==TRUE){
+  if (xlines==TRUE){
     t <- t + theme(panel.grid.major.x=element_line(color=grid_color, linewidth=grid_line_width),
                    panel.grid.minor.x=element_line(color=grid_color, linewidth=grid_line_width))
   }
 
-  if (y_lines==TRUE){
+  if (ylines==TRUE){
     t <- t + theme(panel.grid.major.y=element_line(color=grid_color, linewidth=grid_line_width),
                    panel.grid.minor.y=element_line(color=grid_color, linewidth=grid_line_width))
   }
@@ -143,6 +145,8 @@ theme_clean <- function(p,
   out <-list(t,
              scale_color_clean(),
              scale_fill_clean(),
+             guides(color=guide_legend(nrow = legend_rows)),
+             guides(fill=guide_legend(nrow = legend_rows)),
              theme(...))
 
   if(!is.null(caption)){
@@ -163,6 +167,14 @@ theme_clean <- function(p,
   if(!is.null(breaks)){
     xbreaks <- breaks
     ybreaks <- breaks
+  }
+
+  if(!class(xbreaks)=="waiver" & is.null(xlims)){
+      xlims <- c(min(xbreaks), max(xbreaks))
+  }
+
+  if(!class(ybreaks)=="waiver" & is.null(ylims)){
+      ylims <- c(min(ybreaks), max(ybreaks))
   }
 
   if(!is.null(labels)){
@@ -229,8 +241,6 @@ theme_clean <- function(p,
     plot_margin_in = 0.5
     title_margin = 0.55
   }
-
-
 
   if (!is.null(save_filename)) {
     if(plotlist){
