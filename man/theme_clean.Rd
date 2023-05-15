@@ -31,6 +31,18 @@ theme_clean(
   axis_line_width = 0.5,
   grid_line_width = 0.1,
   x_axis_label_angle = 0,
+  lims = NULL,
+  breaks = NULL,
+  labels = NULL,
+  expand = NULL,
+  xlims = NULL,
+  ylims = NULL,
+  xbreaks = waiver(),
+  ybreaks = waiver(),
+  xlabels = waiver(),
+  ylabels = waiver(),
+  xexpand = c(0, 0.05),
+  yexpand = c(0, 0.05),
   ...,
   save_filename = NULL,
   save_paper_size = "ledger",
@@ -92,6 +104,30 @@ theme_clean(
 
 \item{x_axis_label_angle}{X-axis label angle}
 
+\item{lims}{Set x and y axis limits}
+
+\item{breaks}{Set x and y axis breaks}
+
+\item{labels}{Set x and y axis labels}
+
+\item{expand}{Set x and y axis expansion percentage}
+
+\item{xlims}{Set x limits}
+
+\item{ylims}{Set y limits}
+
+\item{xbreaks}{Set x breaks}
+
+\item{ybreaks}{Set y breaks}
+
+\item{xlabels}{Set x labels}
+
+\item{ylabels}{Set y labels}
+
+\item{xexpand}{Set x expansion}
+
+\item{yexpand}{Set y expansion}
+
 \item{save_filename}{Optional filename is save plot to}
 
 \item{save_paper_size}{Paper size of saved plot}
@@ -109,5 +145,5 @@ Theme function
 Clean a ggplot
 }
 \examples{
-theme_clean(ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point())
+#theme_clean(ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point())
 }
