@@ -7,8 +7,8 @@
 theme_clean(
   p,
   grid = FALSE,
-  x_lines = FALSE,
-  y_lines = FALSE,
+  xlines = FALSE,
+  ylines = FALSE,
   legend_position = "bottom",
   plot_margin_in = 0.5,
   caption = c(),
@@ -24,6 +24,7 @@ theme_clean(
   caption_size = 11,
   legend_title_size = 11,
   legend_title_face = "bold",
+  legend_rows = NULL,
   text_color = "black",
   grid_color = "#D3D3D3",
   no_axis = FALSE,
@@ -56,9 +57,9 @@ theme_clean(
 
 \item{grid}{Add x- and y-axis grid lines}
 
-\item{x_lines}{Add x-axis vertical grid lines}
+\item{xlines}{Add x-axis vertical grid lines}
 
-\item{y_lines}{Add y-axis horizontal grid lines}
+\item{ylines}{Add y-axis horizontal grid lines}
 
 \item{legend_position}{Change legend position}
 
@@ -89,6 +90,8 @@ theme_clean(
 \item{legend_title_size}{Legend title size (points)}
 
 \item{legend_title_face}{Legend title font face ("plain", "bold", "italic", or "bold.italic")}
+
+\item{legend_rows}{Number of legend rows}
 
 \item{text_color}{Text color}
 
@@ -145,5 +148,5 @@ Theme function
 Clean a ggplot
 }
 \examples{
-#theme_clean(ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point())
+theme_clean(ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point())
 }
