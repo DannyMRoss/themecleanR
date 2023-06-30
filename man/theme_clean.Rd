@@ -31,7 +31,10 @@ theme_clean(
   axis_label_face = "plain",
   axis_line_width = 0.5,
   grid_line_width = 0.1,
+  x_axis_label_size = 14,
   x_axis_label_angle = 0,
+  y_axis_label_size = 14,
+  y_axis_label_angle = 0,
   lims = NULL,
   breaks = NULL,
   labels = NULL,
@@ -105,7 +108,13 @@ theme_clean(
 
 \item{grid_line_width}{Grid line width}
 
+\item{x_axis_label_size}{x-axis label size}
+
 \item{x_axis_label_angle}{x-axis label angle}
+
+\item{y_axis_label_size}{y-axis label size}
+
+\item{y_axis_label_angle}{y-axis label angle}
 
 \item{lims}{Set x and y axis limits}
 
@@ -140,12 +149,6 @@ theme_clean(
 \item{save_width}{Manually set paper width}
 
 \item{save_height}{Manually set paper height}
-
-\item{x_label_size}{x-axis label size}
-
-\item{y_label_size}{y-axis label size}
-
-\item{y_axis_label_angle}{y-axis label angle}
 }
 \value{
 Theme function
