@@ -30,7 +30,10 @@
 #' @param axis_label_face Axis label font face ("plain", "bold", "italic", or "bold.italic")
 #' @param axis_line_width Axis line width
 #' @param grid_line_width Grid line width
-#' @param x_axis_label_angle X-axis label angle
+#' @param x_label_size x-axis label size
+#' @param x_axis_label_angle x-axis label angle
+#' @param y_label_size y-axis label size
+#' @param y_axis_label_angle y-axis label angle
 #' @param lims Set x and y axis limits
 #' @param breaks Set x and y axis breaks
 #' @param labels Set x and y axis labels
@@ -52,8 +55,6 @@
 #' @returns Theme function
 #' @export
 #'
-#' @examples
-#' theme_clean(ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point())
 theme_clean <- function(p,
                         grid=FALSE,
                         xlines=FALSE,
@@ -105,7 +106,8 @@ theme_clean <- function(p,
              plot.subtitle = element_text(hjust=0.5, face="italic", size=subtitle_size, margin=margin(b=subtitle_margin, unit="in")),
              plot.caption = element_text(hjust=0.5, size=caption_size, margin=margin(t=caption_margin, unit="in")),
              axis.text = element_text(colour=text_color, face=axis_label_face),
-             axis.text.x = element_text(colour=text_color, face=axis_label_face, angle=x_axis_label_angle),
+             axis.text.x = element_text(colour=text_color, face=axis_label_face, angle=x_axis_label_angle, size=x_label_size),
+             axis.text.y = element_text(colour=text_color, face=axis_label_face, angle=y_axis_label_angle, size=y_label_size),
              axis.line = element_line(linewidth=axis_line_width, color=text_color),
              axis.title = element_text(face="bold"),
              plot.background = element_blank(),
