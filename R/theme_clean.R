@@ -3,6 +3,7 @@
 #' @import ggplot2
 #' @import extrafont
 #' @import scales
+#' @importFrom grDevices cairo_pdf dev.off
 #'
 #' @param p ggplot object
 #' @param grid Add x- and y-axis grid lines
@@ -23,6 +24,7 @@
 #' @param caption_size Subtitle size (points)
 #' @param legend_title_size Legend title size (points)
 #' @param legend_title_face Legend title font face ("plain", "bold", "italic", or "bold.italic")
+#' @param legend_item_size Legend item size
 #' @param legend_rows Number of legend rows
 #' @param text_color Text color
 #' @param grid_color Grid line color
@@ -47,7 +49,7 @@
 #' @param ylabels Set y labels
 #' @param xexpand Set x expansion
 #' @param yexpand Set y expansion
-#' @param save_filename Optional filename is save plot to
+#' @param save_filename Optional filename to save plot
 #' @param save_paper_size Paper size of saved plot
 #' @param save_orientation Orientation of saved plot
 #' @param save_width Manually set paper width
@@ -55,7 +57,6 @@
 #'
 #' @returns Theme function
 #' @export
-#'
 theme_clean <- function(p,
                         grid=FALSE,
                         xlines=FALSE,
@@ -75,6 +76,7 @@ theme_clean <- function(p,
                         caption_size=11,
                         strip_title_size=14,
                         legend_title_size=11,
+                        legend_item_size=14,
                         legend_title_face="bold",
                         legend_rows=NULL,
                         text_color="black",
@@ -124,7 +126,7 @@ theme_clean <- function(p,
              strip.text = element_text(face="bold", colour=text_color, size=strip_title_size),
              legend.title = element_text(face=legend_title_face, size=legend_title_size),
              legend.position = legend_position,
-             legend.text = element_text(colour = text_color),
+             legend.text = element_text(colour = text_color, size=legend_item_size),
              legend.background = element_rect(fill=NA),
              legend.key = element_rect(fill=NA),
              plot.margin = margin(plot_margin_in, plot_margin_in, plot_margin_in, plot_margin_in, unit="in"))

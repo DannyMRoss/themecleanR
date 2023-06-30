@@ -24,6 +24,7 @@ theme_clean(
   caption_size = 11,
   strip_title_size = 14,
   legend_title_size = 11,
+  legend_item_size = 14,
   legend_title_face = "bold",
   legend_rows = NULL,
   text_color = "black",
@@ -95,6 +96,8 @@ theme_clean(
 
 \item{legend_title_size}{Legend title size (points)}
 
+\item{legend_item_size}{Legend item size}
+
 \item{legend_title_face}{Legend title font face ("plain", "bold", "italic", or "bold.italic")}
 
 \item{legend_rows}{Number of legend rows}
@@ -143,7 +146,7 @@ theme_clean(
 
 \item{yexpand}{Set y expansion}
 
-\item{save_filename}{Optional filename is save plot to}
+\item{save_filename}{Optional filename to save plot}
 
 \item{save_paper_size}{Paper size of saved plot}
 
