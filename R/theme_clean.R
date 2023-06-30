@@ -34,6 +34,7 @@
 #' @param x_axis_label_angle x-axis label angle
 #' @param y_axis_label_size y-axis label size
 #' @param y_axis_label_angle y-axis label angle
+#' @param strip_title_size Strip title size
 #' @param lims Set x and y axis limits
 #' @param breaks Set x and y axis breaks
 #' @param labels Set x and y axis labels
@@ -72,6 +73,7 @@ theme_clean <- function(p,
                         title_size=18,
                         subtitle_size=16,
                         caption_size=11,
+                        strip_title_size=14,
                         legend_title_size=11,
                         legend_title_face="bold",
                         legend_rows=NULL,
@@ -119,7 +121,7 @@ theme_clean <- function(p,
              panel.grid.minor = element_blank(),
              panel.border = element_blank(),
              strip.background = element_rect(fill=NA),
-             strip.text = element_text(face="bold", colour=text_color),
+             strip.text = element_text(face="bold", colour=text_color, size=strip_title_size),
              legend.title = element_text(face=legend_title_face, size=legend_title_size),
              legend.position = legend_position,
              legend.text = element_text(colour = text_color),

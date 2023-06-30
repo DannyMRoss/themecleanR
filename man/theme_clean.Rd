@@ -22,6 +22,7 @@ theme_clean(
   title_size = 18,
   subtitle_size = 16,
   caption_size = 11,
+  strip_title_size = 14,
   legend_title_size = 11,
   legend_title_face = "bold",
   legend_rows = NULL,
@@ -89,6 +90,8 @@ theme_clean(
 \item{subtitle_size}{Subtitle size (points)}
 
 \item{caption_size}{Subtitle size (points)}
+
+\item{strip_title_size}{Strip title size}
 
 \item{legend_title_size}{Legend title size (points)}
 
