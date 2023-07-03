@@ -30,7 +30,8 @@ theme_clean(
   legend_title_face = "bold",
   legend_rows = NULL,
   text_color = "black",
-  grid_color = "#D3D3D3",
+  majorgrid_color = "#a5a5a5",
+  minorgrid_color = "#D3D3D3",
   no_axis = FALSE,
   axis_label_face = "plain",
   axis_line_width = 0.5,
@@ -112,7 +113,9 @@ theme_clean(
 
 \item{text_color}{Text color}
 
-\item{grid_color}{Grid line color}
+\item{majorgrid_color}{Grid line color}
+
+\item{minorgrid_color}{Grid line color}
 
 \item{no_axis}{Remove axis lines and ticks}
 

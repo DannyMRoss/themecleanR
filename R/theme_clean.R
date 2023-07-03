@@ -29,7 +29,8 @@
 #' @param legend_item_size Legend item size
 #' @param legend_rows Number of legend rows
 #' @param text_color Text color
-#' @param grid_color Grid line color
+#' @param majorgrid_color Grid line color
+#' @param minorgrid_color Grid line color
 #' @param no_axis Remove axis lines and ticks
 #' @param axis_label_face Axis label font face ("plain", "bold", "italic", or "bold.italic")
 #' @param axis_line_width Axis line width
@@ -86,7 +87,8 @@ theme_clean <- function(p,
                         legend_title_face="bold",
                         legend_rows=NULL,
                         text_color="black",
-                        grid_color="#D3D3D3",
+                        majorgrid_color="#a5a5a5",
+                        minorgrid_color="#D3D3D3",
                         no_axis=FALSE,
                         axis_label_face="plain",
                         axis_line_width=0.5,
@@ -142,18 +144,18 @@ theme_clean <- function(p,
              plot.margin = margin(plot_margin_in, plot_margin_in, plot_margin_in, plot_margin_in, unit="in"))
 
   if (grid==TRUE){
-    t <- t + theme(panel.grid.major=element_line(color=grid_color, linewidth=grid_line_width),
-                   panel.grid.minor=element_line(color=grid_color, linewidth=grid_line_width))
+    t <- t + theme(panel.grid.major=element_line(color=majorgrid_color, linewidth=grid_line_width),
+                   panel.grid.minor=element_line(color=minorgrid_color, linewidth=grid_line_width))
   }
 
   if (xlines==TRUE){
-    t <- t + theme(panel.grid.major.x=element_line(color=grid_color, linewidth=grid_line_width),
-                   panel.grid.minor.x=element_line(color=grid_color, linewidth=grid_line_width))
+    t <- t + theme(panel.grid.major.x=element_line(color=majorgrid_color, linewidth=grid_line_width),
+                   panel.grid.minor.x=element_line(color=minorgrid_color, linewidth=grid_line_width))
   }
 
   if (ylines==TRUE){
-    t <- t + theme(panel.grid.major.y=element_line(color=grid_color, linewidth=grid_line_width),
-                   panel.grid.minor.y=element_line(color=grid_color, linewidth=grid_line_width))
+    t <- t + theme(panel.grid.major.y=element_line(color=majorgrid_color, linewidth=grid_line_width),
+                   panel.grid.minor.y=element_line(color=minorgrid_color, linewidth=grid_line_width))
   }
 
   if (no_axis==TRUE){
