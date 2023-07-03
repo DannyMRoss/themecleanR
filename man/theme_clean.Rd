@@ -44,7 +44,9 @@ theme_clean(
   xlims = NULL,
   ylims = NULL,
   xbreaks = waiver(),
+  xminorbreaks = waiver(),
   ybreaks = waiver(),
+  yminorbreaks = waiver(),
   xlabels = waiver(),
   ylabels = waiver(),
   xexpand = c(0, 0.05),
@@ -136,7 +138,11 @@ theme_clean(
 
 \item{xbreaks}{Set x breaks}
 
+\item{xminorbreaks}{Set x minor breaks}
+
 \item{ybreaks}{Set y breaks}
+
+\item{yminorbreaks}{Set y minor breaks}
 
 \item{xlabels}{Set x labels}
 

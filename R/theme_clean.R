@@ -45,6 +45,8 @@
 #' @param ylims Set y limits
 #' @param xbreaks Set x breaks
 #' @param ybreaks Set y breaks
+#' @param xminorbreaks Set x minor breaks
+#' @param yminorbreaks Set y minor breaks
 #' @param xlabels Set x labels
 #' @param ylabels Set y labels
 #' @param xexpand Set x expansion
@@ -96,7 +98,9 @@ theme_clean <- function(p,
                         xlims=NULL,
                         ylims=NULL,
                         xbreaks=waiver(),
+                        xminorbreaks=waiver(),
                         ybreaks=waiver(),
+                        yminorbreaks=waiver(),
                         xlabels=waiver(),
                         ylabels=waiver(),
                         xexpand=c(0,0.05),
@@ -199,6 +203,7 @@ theme_clean <- function(p,
   if(is.null(x_aes) | is.numeric(x_aes)){
         out <- append(out, list(scale_x_continuous(limits=xlims,
                                                    breaks=xbreaks,
+                                                   minor_breaks=xminorbreaks,
                                                    labels=xlabels,
                                                    expand=expansion(mult=xexpand))))
     }
@@ -206,6 +211,7 @@ theme_clean <- function(p,
   if(is.null(y_aes) | is.numeric(y_aes)){
       out <- append(out, list(scale_y_continuous(limits=ylims,
                                                  breaks=ybreaks,
+                                                 minor_breaks=yminorbreaks,
                                                  labels=ylabels,
                                                  expand=expansion(mult=yexpand))))
     }
