@@ -16,7 +16,7 @@ theme_clean(
   caption_margin = 0,
   title_t_margin = 0,
   title_b_margin = 0,
-  subtitle_t_margin = 0,
+  subtitle_t_margin = 0.1,
   subtitle_b_margin = 0.25,
   borderizer = FALSE,
   font = "sans",
@@ -38,6 +38,8 @@ theme_clean(
   grid_line_width = 0.1,
   x_axis_label_size = 14,
   x_axis_label_angle = 0,
+  x_axis_label_hjust = NULL,
+  x_axis_label_vjust = NULL,
   y_axis_label_size = 14,
   y_axis_label_angle = 0,
   lims = NULL,
@@ -107,7 +109,7 @@ theme_clean(
 
 \item{legend_item_size}{Legend item size}
 
-\item{legend_title_face}{Legend title font face ("plain", "bold", "italic", or "bold.italic")}
+\item{legend_title_face}{Legend title font face}
 
 \item{legend_rows}{Number of legend rows}
 
@@ -119,7 +121,7 @@ theme_clean(
 
 \item{no_axis}{Remove axis lines and ticks}
 
-\item{axis_label_face}{Axis label font face ("plain", "bold", "italic", or "bold.italic")}
+\item{axis_label_face}{Axis label font face}
 
 \item{axis_line_width}{Axis line width}
 
@@ -128,6 +130,10 @@ theme_clean(
 \item{x_axis_label_size}{x-axis label size}
 
 \item{x_axis_label_angle}{x-axis label angle}
+
+\item{x_axis_label_hjust}{x-axis label hjust}
+
+\item{x_axis_label_vjust}{x-axis label vjust}
 
 \item{y_axis_label_size}{y-axis label size}
 

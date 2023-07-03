@@ -25,18 +25,20 @@
 #' @param subtitle_size Subtitle size (points)
 #' @param caption_size Subtitle size (points)
 #' @param legend_title_size Legend title size (points)
-#' @param legend_title_face Legend title font face ("plain", "bold", "italic", or "bold.italic")
+#' @param legend_title_face Legend title font face
 #' @param legend_item_size Legend item size
 #' @param legend_rows Number of legend rows
 #' @param text_color Text color
 #' @param majorgrid_color Grid line color
 #' @param minorgrid_color Grid line color
 #' @param no_axis Remove axis lines and ticks
-#' @param axis_label_face Axis label font face ("plain", "bold", "italic", or "bold.italic")
+#' @param axis_label_face Axis label font face
 #' @param axis_line_width Axis line width
 #' @param grid_line_width Grid line width
 #' @param x_axis_label_size x-axis label size
 #' @param x_axis_label_angle x-axis label angle
+#' @param x_axis_label_hjust x-axis label hjust
+#' @param x_axis_label_vjust x-axis label vjust
 #' @param y_axis_label_size y-axis label size
 #' @param y_axis_label_angle y-axis label angle
 #' @param strip_title_size Strip title size
@@ -73,7 +75,7 @@ theme_clean <- function(p,
                         caption_margin=0,
                         title_t_margin=0,
                         title_b_margin=0,
-                        subtitle_t_margin=0,
+                        subtitle_t_margin=0.1,
                         subtitle_b_margin=0.25,
                         borderizer=FALSE,
                         font="sans",
@@ -95,6 +97,8 @@ theme_clean <- function(p,
                         grid_line_width=0.1,
                         x_axis_label_size=14,
                         x_axis_label_angle=0,
+                        x_axis_label_hjust=NULL,
+                        x_axis_label_vjust=NULL,
                         y_axis_label_size=14,
                         y_axis_label_angle=0,
                         lims=NULL,
@@ -118,6 +122,18 @@ theme_clean <- function(p,
                         save_width=NULL,
                         save_height=NULL){
 
+  if (borderizer){
+    subtitle_b_margin = 0.3
+    plot_margin_in = 0.5
+    title_t_margin = 0.55
+    save_paper_size = "letter"
+  }
+
+  if (x_axis_label_angle==90){
+    x_axis_label_hjust = 1
+    x_axis_label_vjust = 0.5
+  }
+
   t <- theme(text=element_text(size=text_size, family=font, colour=text_color),
              plot.title = element_text(hjust=0.5, face="bold", size=title_size,
                                        margin=margin(t=title_t_margin, b=title_b_margin, unit="in")),
@@ -125,7 +141,9 @@ theme_clean <- function(p,
                                           margin=margin(t=subtitle_t_margin, b=subtitle_b_margin, unit="in")),
              plot.caption = element_text(hjust=0.5, size=caption_size, margin=margin(t=caption_margin, unit="in")),
              axis.text = element_text(colour=text_color, face=axis_label_face),
-             axis.text.x = element_text(colour=text_color, face=axis_label_face, angle=x_axis_label_angle, size=x_axis_label_size),
+             axis.text.x = element_text(colour=text_color, face=axis_label_face,
+                                        angle=x_axis_label_angle, size=x_axis_label_size,
+                                        hjust=x_axis_label_hjust, vjust=x_axis_label_vjust),
              axis.text.y = element_text(colour=text_color, face=axis_label_face, angle=y_axis_label_angle, size=y_axis_label_size),
              axis.line = element_line(linewidth=axis_line_width, color=text_color),
              axis.title = element_text(face="bold"),
@@ -259,11 +277,7 @@ theme_clean <- function(p,
   }
 
 
-  if (borderizer){
-    subtitle_b_margin = 0.3
-    plot_margin_in = 0.5
-    title_t_margin = 0.55
-  }
+
 
   if (!is.null(save_filename)) {
     if(plotlist){
