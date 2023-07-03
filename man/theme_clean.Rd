@@ -14,8 +14,10 @@ theme_clean(
   caption = c(),
   caption_title = "Notes & Sources:",
   caption_margin = 0,
-  title_margin = 0,
-  subtitle_margin = 0.25,
+  title_t_margin = 0,
+  title_b_margin = 0,
+  subtitle_t_margin = 0,
+  subtitle_b_margin = 0.25,
   borderizer = FALSE,
   font = "sans",
   text_size = 14,
@@ -78,9 +80,13 @@ theme_clean(
 
 \item{caption_margin}{Caption margin (inches)}
 
-\item{title_margin}{Title margin (inches)}
+\item{title_t_margin}{Title top margin (inches)}
 
-\item{subtitle_margin}{Subtitle margin (inches)}
+\item{title_b_margin}{Title bottom margin (inches)}
+
+\item{subtitle_t_margin}{Subtitle top margin (inches)}
+
+\item{subtitle_b_margin}{Subtitle bottom margin (inches)}
 
 \item{borderizer}{Margins so plot fits in LaTeX borderizer}
 

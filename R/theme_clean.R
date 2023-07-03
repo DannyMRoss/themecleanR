@@ -14,8 +14,10 @@
 #' @param caption Caption as a vector, each element appears on new line
 #' @param caption_title Caption title
 #' @param caption_margin Caption margin (inches)
-#' @param title_margin Title margin (inches)
-#' @param subtitle_margin Subtitle margin (inches)
+#' @param title_t_margin Title top margin (inches)
+#' @param title_b_margin Title bottom margin (inches)
+#' @param subtitle_t_margin Subtitle top margin (inches)
+#' @param subtitle_b_margin Subtitle bottom margin (inches)
 #' @param borderizer Margins so plot fits in LaTeX borderizer
 #' @param font Font name
 #' @param text_size Default text size for axes (points)
@@ -68,8 +70,10 @@ theme_clean <- function(p,
                         caption=c(),
                         caption_title="Notes & Sources:",
                         caption_margin=0,
-                        title_margin=0,
-                        subtitle_margin=0.25,
+                        title_t_margin=0,
+                        title_b_margin=0,
+                        subtitle_t_margin=0,
+                        subtitle_b_margin=0.25,
                         borderizer=FALSE,
                         font="sans",
                         text_size=14,
@@ -113,8 +117,10 @@ theme_clean <- function(p,
                         save_height=NULL){
 
   t <- theme(text=element_text(size=text_size, family=font, colour=text_color),
-             plot.title = element_text(hjust=0.5, face="bold", size=title_size, margin=margin(t=title_margin, unit="in")),
-             plot.subtitle = element_text(hjust=0.5, face="italic", size=subtitle_size, margin=margin(b=subtitle_margin, unit="in")),
+             plot.title = element_text(hjust=0.5, face="bold", size=title_size,
+                                       margin=margin(t=title_t_margin, b=title_b_margin, unit="in")),
+             plot.subtitle = element_text(hjust=0.5, face="italic", size=subtitle_size,
+                                          margin=margin(t=subtitle_t_margin, b=subtitle_b_margin, unit="in")),
              plot.caption = element_text(hjust=0.5, size=caption_size, margin=margin(t=caption_margin, unit="in")),
              axis.text = element_text(colour=text_color, face=axis_label_face),
              axis.text.x = element_text(colour=text_color, face=axis_label_face, angle=x_axis_label_angle, size=x_axis_label_size),
@@ -252,9 +258,9 @@ theme_clean <- function(p,
 
 
   if (borderizer){
-    subtitle_margin = 0.3
+    subtitle_b_margin = 0.3
     plot_margin_in = 0.5
-    title_margin = 0.55
+    title_t_margin = 0.55
   }
 
   if (!is.null(save_filename)) {
