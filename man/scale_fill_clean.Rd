@@ -4,7 +4,10 @@
 \alias{scale_fill_clean}
 \title{Clean manual fill scale for ggplots}
 \usage{
-scale_fill_clean()
+scale_fill_clean(colors)
+}
+\arguments{
+\item{colors}{Override colors}
 }
 \value{
 Clean manual fill scale

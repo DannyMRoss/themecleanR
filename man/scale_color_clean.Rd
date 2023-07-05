@@ -4,7 +4,10 @@
 \alias{scale_color_clean}
 \title{Clean manual color scale for ggplots}
 \usage{
-scale_color_clean()
+scale_color_clean(colors)
+}
+\arguments{
+\item{colors}{Override colors}
 }
 \value{
 Clean manual color scale

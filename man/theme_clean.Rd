@@ -32,6 +32,7 @@ theme_clean(
   text_color = "black",
   majorgrid_color = "#a5a5a5",
   minorgrid_color = "#D3D3D3",
+  colors = NULL,
   no_axis = FALSE,
   axis_label_face = "plain",
   axis_line_width = 0.5,
@@ -118,6 +119,8 @@ theme_clean(
 \item{majorgrid_color}{Grid line color}
 
 \item{minorgrid_color}{Grid line color}
+
+\item{colors}{Override colors}
 
 \item{no_axis}{Remove axis lines and ticks}
 

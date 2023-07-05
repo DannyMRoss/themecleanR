@@ -31,6 +31,7 @@
 #' @param text_color Text color
 #' @param majorgrid_color Grid line color
 #' @param minorgrid_color Grid line color
+#' @param colors Override colors
 #' @param no_axis Remove axis lines and ticks
 #' @param axis_label_face Axis label font face
 #' @param axis_line_width Axis line width
@@ -91,6 +92,7 @@ theme_clean <- function(p,
                         text_color="black",
                         majorgrid_color="#a5a5a5",
                         minorgrid_color="#D3D3D3",
+                        colors=NULL,
                         no_axis=FALSE,
                         axis_label_face="plain",
                         axis_line_width=0.5,
@@ -182,8 +184,8 @@ theme_clean <- function(p,
 
   # apply color palette and default expansion
   out <-list(t,
-             scale_color_clean(),
-             scale_fill_clean(),
+             scale_color_clean(colors),
+             scale_fill_clean(colors),
              guides(color=guide_legend(nrow = legend_rows)),
              guides(fill=guide_legend(nrow = legend_rows)),
              theme(...))
