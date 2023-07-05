@@ -55,6 +55,8 @@ theme_clean(
   yminorbreaks = waiver(),
   xlabels = waiver(),
   ylabels = waiver(),
+  x.sec.axis = waiver(),
+  y.sec.axis = waiver(),
   xexpand = c(0, 0.05),
   yexpand = c(0, 0.05),
   ...,
@@ -165,6 +167,10 @@ theme_clean(
 \item{xlabels}{Set x labels}
 
 \item{ylabels}{Set y labels}
+
+\item{x.sec.axis}{x secondary axis}
+
+\item{y.sec.axis}{y secondary axis}
 
 \item{xexpand}{Set x expansion}
 

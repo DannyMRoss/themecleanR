@@ -57,6 +57,8 @@
 #' @param ylabels Set y labels
 #' @param xexpand Set x expansion
 #' @param yexpand Set y expansion
+#' @param x.sec.axis x secondary axis
+#' @param y.sec.axis y secondary axis
 #' @param save_filename Optional filename to save plot
 #' @param save_paper_size Paper size of saved plot
 #' @param save_orientation Orientation of saved plot
@@ -115,6 +117,8 @@ theme_clean <- function(p,
                         yminorbreaks=waiver(),
                         xlabels=waiver(),
                         ylabels=waiver(),
+                        x.sec.axis=waiver(),
+                        y.sec.axis=waiver(),
                         xexpand=c(0,0.05),
                         yexpand=c(0,0.05),
                         ...,
@@ -233,7 +237,8 @@ theme_clean <- function(p,
                                                    breaks=xbreaks,
                                                    minor_breaks=xminorbreaks,
                                                    labels=xlabels,
-                                                   expand=expansion(mult=xexpand))))
+                                                   expand=expansion(mult=xexpand),
+                                                   sec.axis = x.sec.axis)))
     }
 
   if(is.null(y_aes) | is.numeric(y_aes)){
@@ -241,7 +246,8 @@ theme_clean <- function(p,
                                                  breaks=ybreaks,
                                                  minor_breaks=yminorbreaks,
                                                  labels=ylabels,
-                                                 expand=expansion(mult=yexpand))))
+                                                 expand=expansion(mult=yexpand),
+                                                 sec.axis = y.sec.axis)))
     }
 
   p_out <- p_in + out
