@@ -127,7 +127,7 @@ theme_clean <- function(p,
   if (borderizer){
     subtitle_b_margin = 0.3
     plot_margin_in = 0.5
-    title_t_margin = 0.55
+    title_t_margin = 0.5
     save_paper_size = "letter"
   }
 
