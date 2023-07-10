@@ -3,6 +3,7 @@
 #' @import ggplot2
 #' @import extrafont
 #' @import scales
+#' @import plotly
 #' @importFrom grDevices cairo_pdf dev.off
 #'
 #' @param p ggplot object
@@ -59,6 +60,7 @@
 #' @param yexpand Set y expansion
 #' @param x.sec.axis x secondary axis
 #' @param y.sec.axis y secondary axis
+#' @param interactive return interactive plotly plot
 #' @param save_filename Optional filename to save plot
 #' @param save_paper_size Paper size of saved plot
 #' @param save_orientation Orientation of saved plot
@@ -81,7 +83,7 @@ theme_clean <- function(p,
                         subtitle_t_margin=0.1,
                         subtitle_b_margin=0.25,
                         borderizer=FALSE,
-                        font="sans",
+                        font="Arial",
                         text_size=14,
                         title_size=18,
                         subtitle_size=16,
@@ -122,6 +124,7 @@ theme_clean <- function(p,
                         xexpand=c(0,0.05),
                         yexpand=c(0,0.05),
                         ...,
+                        interactive=FALSE,
                         save_filename=NULL,
                         save_paper_size="ledger",
                         save_orientation="landscape",
@@ -254,6 +257,8 @@ theme_clean <- function(p,
     return(p_out)
   }
 
+
+
   plotlist <- is.list(p) && all(sapply(p, function(p) inherits(p, "ggplot")))
 
   if(plotlist){
@@ -261,7 +266,6 @@ theme_clean <- function(p,
   } else{
     p_cleaned <- xyscale(p)
   }
-
 
   if (!is.null(save_width) && !is.null(save_height)) {
     # Use custom width and height if provided
@@ -284,9 +288,6 @@ theme_clean <- function(p,
     plot_height <- temp
   }
 
-
-
-
   if (!is.null(save_filename)) {
     if(plotlist){
       cairo_pdf(save_filename, width=plot_width, height=plot_height, onefile = TRUE)
@@ -299,6 +300,12 @@ theme_clean <- function(p,
       print(p_cleaned)
       dev.off()
     }
+  }
+
+  if(interactive){
+    pint <- ggplotly(p_cleaned) %>%
+      layout(showlegend=FALSE)
+    return(pint)
   }
 
   return(p_cleaned)
