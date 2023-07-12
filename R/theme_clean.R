@@ -3,10 +3,14 @@
 #' @import ggplot2
 #' @import extrafont
 #' @import scales
-#' @import plotly
+#' @importFrom plotly ggplotly
 #' @importFrom grDevices cairo_pdf dev.off
+#' @importFrom graphics layout
+#' @importFrom methods is
+#'
 #'
 #' @param p ggplot object
+#' @param dark apply dark theme
 #' @param grid Add x- and y-axis grid lines
 #' @param xlines Add x-axis vertical grid lines
 #' @param ylines Add y-axis horizontal grid lines
@@ -60,7 +64,8 @@
 #' @param yexpand Set y expansion
 #' @param x.sec.axis x secondary axis
 #' @param y.sec.axis y secondary axis
-#' @param interactive return interactive plotly plot
+#' @param ggplotly return interactive plotly plot
+#' @param ggplotlyargs ggplotly arguments
 #' @param save_filename Optional filename to save plot
 #' @param save_paper_size Paper size of saved plot
 #' @param save_orientation Orientation of saved plot
@@ -70,6 +75,7 @@
 #' @returns Theme function
 #' @export
 theme_clean <- function(p,
+                        dark=FALSE,
                         grid=FALSE,
                         xlines=FALSE,
                         ylines=FALSE,
@@ -124,7 +130,8 @@ theme_clean <- function(p,
                         xexpand=c(0,0.05),
                         yexpand=c(0,0.05),
                         ...,
-                        interactive=FALSE,
+                        ggplotly=FALSE,
+                        ggplotlyargs=list(),
                         save_filename=NULL,
                         save_paper_size="ledger",
                         save_orientation="landscape",
@@ -143,6 +150,10 @@ theme_clean <- function(p,
     x_axis_label_vjust = 0.5
   }
 
+  if ((dark) & text_color=="black"){
+    text_color="white"
+  }
+
   t <- theme(text=element_text(size=text_size, family=font, colour=text_color),
              plot.title = element_text(hjust=0.5, face="bold", size=title_size,
                                        margin=margin(t=title_t_margin, b=title_b_margin, unit="in")),
@@ -154,6 +165,7 @@ theme_clean <- function(p,
                                         angle=x_axis_label_angle, size=x_axis_label_size,
                                         hjust=x_axis_label_hjust, vjust=x_axis_label_vjust),
              axis.text.y = element_text(colour=text_color, face=axis_label_face, angle=y_axis_label_angle, size=y_axis_label_size),
+             axis.ticks = element_line(color=text_color),
              axis.line = element_line(linewidth=axis_line_width, color=text_color),
              axis.title = element_text(face="bold"),
              plot.background = element_blank(),
@@ -170,22 +182,27 @@ theme_clean <- function(p,
              legend.key = element_rect(fill=NA),
              plot.margin = margin(plot_margin_in, plot_margin_in, plot_margin_in, plot_margin_in, unit="in"))
 
-  if (grid==TRUE){
+  if (dark){
+    t <- t + theme(plot.background = element_rect(fill="black"),
+                   panel.background = element_rect(fill="black"))
+  }
+
+  if (grid){
     t <- t + theme(panel.grid.major=element_line(color=majorgrid_color, linewidth=grid_line_width),
                    panel.grid.minor=element_line(color=minorgrid_color, linewidth=grid_line_width))
   }
 
-  if (xlines==TRUE){
+  if (xlines){
     t <- t + theme(panel.grid.major.x=element_line(color=majorgrid_color, linewidth=grid_line_width),
                    panel.grid.minor.x=element_line(color=minorgrid_color, linewidth=grid_line_width))
   }
 
-  if (ylines==TRUE){
+  if (ylines){
     t <- t + theme(panel.grid.major.y=element_line(color=majorgrid_color, linewidth=grid_line_width),
                    panel.grid.minor.y=element_line(color=minorgrid_color, linewidth=grid_line_width))
   }
 
-  if (no_axis==TRUE){
+  if (no_axis){
     t <- t + theme(axis.line=element_blank(), axis.ticks = element_blank())
   }
 
@@ -217,11 +234,11 @@ theme_clean <- function(p,
     ybreaks <- breaks
   }
 
-  if(!class(xbreaks)=="waiver" & is.null(xlims)){
+  if(!is(xbreaks,"waiver") & is.null(xlims)){
       xlims <- c(min(xbreaks), max(xbreaks))
   }
 
-  if(!class(ybreaks)=="waiver" & is.null(ylims)){
+  if(!is(ybreaks,"waiver") & is.null(ylims)){
       ylims <- c(min(ybreaks), max(ybreaks))
   }
 
@@ -268,21 +285,17 @@ theme_clean <- function(p,
   }
 
   if (!is.null(save_width) && !is.null(save_height)) {
-    # Use custom width and height if provided
     plot_width <- save_width
     plot_height <- save_height
   } else if (save_paper_size == "letter") {
-    # Use letter paper size if selected
     plot_width <- 11
     plot_height <- 8.5
   } else {
-    # Use ledger paper size by default
     plot_width <- 17
     plot_height <- 11
   }
 
   if (save_orientation == "portrait") {
-    # Flip dimensions for portrait orientation
     temp <- plot_width
     plot_width <- plot_height
     plot_height <- temp
@@ -302,8 +315,8 @@ theme_clean <- function(p,
     }
   }
 
-  if(interactive){
-    pint <- ggplotly(p_cleaned) %>%
+  if(ggplotly){
+    pint <- do.call("ggplotly", c(p_cleaned, ggplotlyargs)) %>%
       layout(showlegend=FALSE)
     return(pint)
   }

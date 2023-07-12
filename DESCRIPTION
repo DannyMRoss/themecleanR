@@ -7,7 +7,9 @@ Description: Theme functions and caption formatting for report ready figures.
 Imports: 
     ggplot2,
     extrafont,
-    scales
+    scales,
+    plotly,
+    methods
 License: file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

@@ -6,6 +6,7 @@
 \usage{
 theme_clean(
   p,
+  dark = FALSE,
   grid = FALSE,
   xlines = FALSE,
   ylines = FALSE,
@@ -60,7 +61,8 @@ theme_clean(
   xexpand = c(0, 0.05),
   yexpand = c(0, 0.05),
   ...,
-  interactive = FALSE,
+  ggplotly = FALSE,
+  ggplotlyargs = list(),
   save_filename = NULL,
   save_paper_size = "ledger",
   save_orientation = "landscape",
@@ -70,6 +72,8 @@ theme_clean(
 }
 \arguments{
 \item{p}{ggplot object}
+
+\item{dark}{apply dark theme}
 
 \item{grid}{Add x- and y-axis grid lines}
 
@@ -176,6 +180,10 @@ theme_clean(
 \item{xexpand}{Set x expansion}
 
 \item{yexpand}{Set y expansion}
+
+\item{ggplotly}{return interactive plotly plot}
+
+\item{ggplotlyargs}{ggplotly arguments}
 
 \item{save_filename}{Optional filename to save plot}
 

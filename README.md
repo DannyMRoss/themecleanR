@@ -85,6 +85,18 @@ theme_clean(plot,
 
 ``` r
 
+# dark theme
+theme_clean(plot,
+            dark=TRUE,
+            font = "Palatino Linotype",
+            caption = sources,
+            save_filename = "man/figures/iris_dark.pdf", save_paper_size = "letter", save_orientation = "landscape")
+```
+
+<img src="man/figures/README-example1-6.png" width="100%" />
+
+``` r
+
 # apply same formatting to multiple plots and save in a single pdf
 plot2 <- ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species)) +
   labs(title="Iris Flowers", subtitle="Petal Length vs. Width",
@@ -98,12 +110,12 @@ theme_clean(list(plot, plot2),
 #> [[1]]
 ```
 
-<img src="man/figures/README-example1-6.png" width="100%" />
+<img src="man/figures/README-example1-7.png" width="100%" />
 
     #> 
     #> [[2]]
 
-<img src="man/figures/README-example1-7.png" width="100%" />
+<img src="man/figures/README-example1-8.png" width="100%" />
 
 ``` r
 # bar chart example
