@@ -4,14 +4,21 @@
 \alias{clean_palette}
 \title{Clean color palette}
 \usage{
-clean_palette(n, colors = clean_colors, type = c("discrete", "continuous"))
+clean_palette(
+  n,
+  colors = clean_colors,
+  type = c("discrete", "continuous"),
+  order = NULL
+)
 }
 \arguments{
 \item{n}{Number of colors}
 
-\item{colors}{Vector of colors}
+\item{colors}{Named list of colors}
 
 \item{type}{Discrete or continuous scale}
+
+\item{order}{Colors to move to the front}
 }
 \value{
 Clean palette object
