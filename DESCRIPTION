@@ -3,13 +3,14 @@ Title: Clean themes and formatting for ggplots
 Version: 0.0.0.9000
 Authors@R: 
     person("Daniel", "Ross", , "dannymross@gmail.com", role = c("aut", "cre"))
-Description: Theme functions and caption formatting for report ready figures.
+Description: Theme function, caption formatting, and helpers for report ready figures.
 Imports: 
     ggplot2,
     extrafont,
     scales,
     plotly,
-    methods
+    methods,
+    data.table
 License: file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

@@ -5,7 +5,7 @@
 \alias{clean_colors}
 \title{Clean colors}
 \format{
-An object of class \code{list} of length 30.
+An object of class \code{list} of length 28.
 }
 \usage{
 clean_colors
