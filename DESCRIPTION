@@ -12,7 +12,8 @@ Imports:
     methods,
     data.table,
     pagedown,
-    gt
+    gt,
+    dplyr
 License: file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

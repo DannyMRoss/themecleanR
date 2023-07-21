@@ -1,6 +1,7 @@
 #' Format table
 #'
 #' @import gt
+#' @import dplyr
 #'
 #' @param gt table to format
 #' @param dark dark column labels
@@ -75,7 +76,7 @@ tab <- function(gt,
     title <- paste(title,subtitle,sep="<br>")
   }
 
-  if(t!=""){
+  if(title!=""){
     gt <- gt %>% tab_header(title=md(title))
   }
 
