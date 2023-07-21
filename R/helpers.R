@@ -117,3 +117,21 @@ monthsl <- function(DF, b=4, f="%b-%y", last=TRUE){
   l <- format(DF[M %in% s,unique(MONTH)], "%b-%y")
   return(list(s, l))
 }
+
+#' Add letters to column names
+#'
+#' @param DT table to add column letters
+#' @param delim delimiter
+#'
+#' @return table with changed names
+#' @export
+#'
+colid <- function(DT, delim="/"){
+  l <- paste0("[", LETTERS[1:ncol(DT)], "]")
+  cn <- names(DT)
+  for (i in seq_along(cn)){
+    nn <- paste0(cn[i], delim, l[i])
+    setnames(DT, cn[i], nn)
+  }
+  return(DT)
+}

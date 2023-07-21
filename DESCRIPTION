@@ -10,7 +10,9 @@ Imports:
     scales,
     plotly,
     methods,
-    data.table
+    data.table,
+    pagedown,
+    gt
 License: file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
