@@ -106,4 +106,5 @@ tabpdf <- function(tab,
   tab %>% gtsave(paste0(path, ".html"))
   pagedown::chrome_print(paste0(path, ".html"), paste0(path, ".pdf"),
                          options=options)
+  return(tab)
 }
