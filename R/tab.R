@@ -31,6 +31,7 @@ tab <- function(gt,
     cols_width(everything() ~ px(100)) %>%
     cols_align(align="center") %>%
     tab_style(style = cell_text(align = "center"), locations = cells_source_notes()) %>%
+    tab_style( style = "vertical-align:middle", locations = cells_column_labels()) %>%
     tab_options(table.font.color = "black",
                 table.font.size = table.font.size,
                 heading.title.font.size = title.font.size,
