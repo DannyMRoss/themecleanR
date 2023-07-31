@@ -135,3 +135,33 @@ colid <- function(DT, delim="/"){
   }
   return(DT)
 }
+
+#' format columns
+#'
+#' @param DT import table
+#' @param comma_cols comma columns
+#' @param dollar_cols dollar columns
+#' @param percent_cols percent columns
+#' @param comma_accuracy comma accuracy
+#' @param dollar_accuracy dollar accuracy
+#' @param percent_accuracy percent accuracy
+#'
+#' @return
+#' @export
+#'
+formatcols <- function(DT, comma_cols = NULL, dollar_cols = NULL, percent_cols = NULL,  comma_accuracy = 1, dollar_accuracy = 1, percent_accuracy = 0.01) {
+
+  if (!is.null(comma_cols)) {
+    DT[, (comma_cols) := lapply(.SD, comma, accuracy = comma_accuracy), .SDcols = comma_cols]
+  }
+
+  if (!is.null(dollar_cols)) {
+    DT[, (dollar_cols) := lapply(.SD, dollar, accuracy = dollar_accuracy), .SDcols = dollar_cols]
+  }
+
+  if (!is.null(percent_cols)) {
+    DT[, (percent_cols) := lapply(.SD, percent, accuracy = percent_accuracy), .SDcols = percent_cols]
+  }
+
+  return(DT)
+}
