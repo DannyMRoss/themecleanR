@@ -1,4 +1,4 @@
-#' Format table
+#' Format html table
 #'
 #' @import gt
 #' @import dplyr
@@ -89,7 +89,7 @@ tab <- function(gt,
   return(gt)
 }
 
-#' Save formatted table
+#' Save formatted html table
 #'
 #' @import gt
 #' @importFrom pagedown chrome_print
@@ -108,4 +108,74 @@ tabpdf <- function(tab,
   pagedown::chrome_print(paste0(path, ".html"), paste0(path, ".pdf"),
                          options=options)
   return(tab)
+}
+
+#' Format LaTeX table
+#'
+#' @import xtable
+#'
+#' @param DT data.table
+#' @param shading add alternate row shading
+#' @param cwidth set column widths
+#' @param cletters add column sub-header labels
+#' @param rowspace add extra space after rows
+#' @param ... xtable print options
+#'
+#' @return latex table from data.table
+#' @export
+#'
+tabtex <- function(DT,
+                   shading = TRUE,
+                   cwidth="1in",
+                   cletters=paste0("[",LETTERS[1:ncol(DT)],"]"),
+                   rowspace=NULL,
+                   ...) {
+  if (is.numeric(cwidth)){
+    cwidth <- paste0(cwidth,"in")
+  }
+  t <- xtable(DT, caption = "", label = "", align = rep(paste0("x{",cwidth,"}"), ncol(DT) + 1))
+  bold <- function(x) paste0('{\\bfseries ', x, '}')
+  if (!is.null(cletters) & length(cletters)!=ncol(DT)){
+    cletters <- c(cletters, rep("",ncol(DT)-length(cletters)))
+  }
+  l <- paste0(paste0(cletters, collapse = " & "), " \n")
+  lt  <- paste0(
+    #"\\hline \n",
+    l,
+    "\\endhead \n",
+    "\\hline \n",
+    "{\\footnotesize Continued $\\downarrow$} \n",
+    "\\endfoot \n",
+    "\\endlastfoot \n")
+
+  addtorow <- list()
+  addtorow$pos <- as.list(c(0))
+  addtorow$command <- c(lt)
+
+  if (!is.null(rowspace)){
+    addtorow$pos <- c(addtorow$pos, rowspace)
+    blank <- rep("& & & &  \\\\ \n", length(rowspace))
+    addtorow$command <- c(addtorow$command, blank)
+  }
+
+  if (shading){
+    rws <- seq(1, nrow(DT), 2)
+    #col <- rep(paste0("\\rowcolor[",rowcolor,"]"), length(rws))
+    col <- rep("\\rowcolor[gray]{.95}", length(rws))
+    addtorow$pos <- c(addtorow$pos, rws)
+    addtorow$command <- c(addtorow$command, col)
+  }
+
+  print(
+    t,
+    sanitize.colnames.function = bold,
+    include.rownames = FALSE,
+    tabular.environment = "longtable",
+    add.to.row = addtorow,
+    floating = FALSE,
+    caption.placement = "top",
+    comment = FALSE,
+    booktabs = TRUE,
+    ...
+  )
 }

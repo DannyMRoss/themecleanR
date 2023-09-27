@@ -2,7 +2,7 @@
 % Please edit documentation in R/tab.R
 \name{tab}
 \alias{tab}
-\title{Format table}
+\title{Format html table}
 \usage{
 tab(
   gt,
@@ -39,5 +39,5 @@ tab(
 html table
 }
 \description{
-Format table
+Format html table
 }

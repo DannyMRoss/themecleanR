@@ -6,8 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of themecleanR is to create clean(R) ggplots with a more
-concise syntax.
+The goal of themecleanR is to create clean(R) ggplots and tables with a
+more concise syntax.
 
 ## Installation
 
@@ -21,14 +21,15 @@ devtools::install_github("DannyMRoss/themecleanR")
 
 ## Examples
 
-``` r
-attach(iris)
-library(ggplot2)
-library(extrafont) # read https://github.com/wch/extrafont for font configuration
-#> Registering fonts with R
-library(scales)
-library(themecleanR)
+    #> Registering fonts with R
+    #> Warning: replacing previous import 'data.table::first' by 'dplyr::first' when
+    #> loading 'themecleanR'
+    #> Warning: replacing previous import 'data.table::last' by 'dplyr::last' when
+    #> loading 'themecleanR'
+    #> Warning: replacing previous import 'data.table::between' by 'dplyr::between'
+    #> when loading 'themecleanR'
 
+``` r
 # make plot
 plot <- ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) +
   labs(title="Iris Flowers", subtitle="Sepal Length vs. Width",

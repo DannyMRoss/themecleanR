@@ -2,7 +2,7 @@
 % Please edit documentation in R/tab.R
 \name{tabpdf}
 \alias{tabpdf}
-\title{Save formatted table}
+\title{Save formatted html table}
 \usage{
 tabpdf(
   tab,
@@ -22,5 +22,5 @@ tabpdf(
 html and pdf
 }
 \description{
-Save formatted table
+Save formatted html table
 }

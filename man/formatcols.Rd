@@ -29,6 +29,9 @@ formatcols(
 
 \item{percent_accuracy}{percent accuracy}
 }
+\value{
+data.table with formatted columns
+}
 \description{
 format columns
 }

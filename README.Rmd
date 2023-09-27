@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of themecleanR is to create clean(R) ggplots with a more concise syntax.
+The goal of themecleanR is to create clean(R) ggplots and tables with a more concise syntax.
 
 ## Installation
 
@@ -31,13 +31,15 @@ devtools::install_github("DannyMRoss/themecleanR")
 
 ## Examples
 
-```{r example1}
+```{r library, echo=FALSE}
 attach(iris)
 library(ggplot2)
 library(extrafont) # read https://github.com/wch/extrafont for font configuration
 library(scales)
 library(themecleanR)
+```
 
+```{r example1}
 # make plot
 plot <- ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) +
   labs(title="Iris Flowers", subtitle="Sepal Length vs. Width",

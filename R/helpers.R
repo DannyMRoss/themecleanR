@@ -146,7 +146,7 @@ colid <- function(DT, delim="/"){
 #' @param dollar_accuracy dollar accuracy
 #' @param percent_accuracy percent accuracy
 #'
-#' @return
+#' @return data.table with formatted columns
 #' @export
 #'
 formatcols <- function(DT, comma_cols = NULL, dollar_cols = NULL, percent_cols = NULL,  comma_accuracy = 1, dollar_accuracy = 1, percent_accuracy = 0.01) {
