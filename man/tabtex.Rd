@@ -6,9 +6,10 @@
 \usage{
 tabtex(
   DT,
-  shading = TRUE,
+  shading = FALSE,
+  align = NULL,
   cwidth = "1in",
-  cletters = paste0("[", LETTERS[1:ncol(DT)], "]"),
+  cletters = NULL,
   rowspace = NULL,
   ...
 )
@@ -18,11 +19,13 @@ tabtex(
 
 \item{shading}{add alternate row shading}
 
+\item{align}{latex table align codes}
+
 \item{cwidth}{set column widths}
 
-\item{cletters}{add column sub-header labels}
+\item{cletters}{add column sub-header labels, use option "default" for \link{A}, \link{B}, etc.}
 
-\item{rowspace}{add extra space after rows}
+\item{rowspace}{add extra blank row after row number(s)}
 
 \item{...}{xtable print options}
 }

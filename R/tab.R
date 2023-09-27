@@ -116,35 +116,62 @@ tabpdf <- function(tab,
 #'
 #' @param DT data.table
 #' @param shading add alternate row shading
+#' @param align latex table align codes
 #' @param cwidth set column widths
-#' @param cletters add column sub-header labels
-#' @param rowspace add extra space after rows
+#' @param cletters add column sub-header labels, use option "default" for [A], [B], etc.
+#' @param rowspace add extra blank row after row number(s)
 #' @param ... xtable print options
 #'
 #' @return latex table from data.table
 #' @export
 #'
 tabtex <- function(DT,
-                   shading = TRUE,
+                   shading = FALSE,
+                   align = NULL,
                    cwidth="1in",
-                   cletters=paste0("[",LETTERS[1:ncol(DT)],"]"),
+                   cletters=NULL,
                    rowspace=NULL,
+                   continued=TRUE,
                    ...) {
+
   if (is.numeric(cwidth)){
     cwidth <- paste0(cwidth,"in")
   }
-  t <- xtable(DT, caption = "", label = "", align = rep(paste0("x{",cwidth,"}"), ncol(DT) + 1))
+  t <- xtable(DT, caption = "", label = "")
+
+  if (!is.null(align)){
+    if (length(align)<ncol(DT)+1){
+      align <- rep(align[1], ncol(DT) + 1)
+    }
+    align(t) <- align
+  } else{
+    align(t) <- rep(paste0("x{",cwidth,"}"), ncol(DT) + 1)
+  }
+
   bold <- function(x) paste0('{\\bfseries ', x, '}')
-  if (!is.null(cletters) & length(cletters)!=ncol(DT)){
+
+  if (is.null(cletters)){
+    cletters <- NULL
+  } else if (length(cletters)==1 & cletters=="default"){
+    cletters <- paste0("[",LETTERS[1:ncol(DT)],"]")
+  } else if (is.character(cletters) & length(cletters)!=ncol(DT)){
     cletters <- c(cletters, rep("",ncol(DT)-length(cletters)))
   }
+
   l <- paste0(paste0(cletters, collapse = " & "), " \n")
+
+  if (continued){
+    contdown <- "{\\footnotesize Continued $\\downarrow$} \n"
+  } else{
+    contdown <- NULL
+  }
+
   lt  <- paste0(
     #"\\hline \n",
     l,
     "\\endhead \n",
     "\\hline \n",
-    "{\\footnotesize Continued $\\downarrow$} \n",
+    contdown,
     "\\endfoot \n",
     "\\endlastfoot \n")
 
@@ -160,7 +187,6 @@ tabtex <- function(DT,
 
   if (shading){
     rws <- seq(1, nrow(DT), 2)
-    #col <- rep(paste0("\\rowcolor[",rowcolor,"]"), length(rws))
     col <- rep("\\rowcolor[gray]{.95}", length(rws))
     addtorow$pos <- c(addtorow$pos, rws)
     addtorow$command <- c(addtorow$command, col)
