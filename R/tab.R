@@ -140,9 +140,6 @@ tabtex <- function(DT,
   t <- xtable(DT, caption = "", label = "")
 
   if (!is.null(align)){
-    if (length(align)<ncol(DT)+1){
-      align <- rep(align[1], ncol(DT) + 1)
-    }
     align(t) <- align
   } else{
     align(t) <- rep(paste0("x{",cwidth,"}"), ncol(DT) + 1)
