@@ -131,7 +131,7 @@ tabtex <- function(DT,
                    cwidth="1in",
                    cletters=NULL,
                    rowspace=NULL,
-                   continued=TRUE,
+                   continued=NULL,
                    ...) {
 
   if (is.numeric(cwidth)){
@@ -142,14 +142,14 @@ tabtex <- function(DT,
   if (!is.null(align)){
     align(t) <- align
   } else{
-    align(t) <- rep(paste0("x{",cwidth,"}"), ncol(DT) + 1)
+    align(t) <- rep(paste0("M{",cwidth,"}"), ncol(DT) + 1)
   }
 
   bold <- function(x) paste0('{\\bfseries ', x, '}')
 
   if (is.null(cletters)){
     cletters <- NULL
-  } else if (length(cletters)==1 & cletters=="default"){
+  } else if (length(cletters)==1 && cletters=="default"){
     cletters <- paste0("[",LETTERS[1:ncol(DT)],"]")
   } else if (is.character(cletters) & length(cletters)!=ncol(DT)){
     cletters <- c(cletters, rep("",ncol(DT)-length(cletters)))
@@ -157,10 +157,8 @@ tabtex <- function(DT,
 
   l <- paste0(paste0(cletters, collapse = " & "), " \n")
 
-  if (continued){
-    contdown <- "{\\footnotesize Continued $\\downarrow$} \n"
-  } else{
-    contdown <- NULL
+  if (!is.null(continued)){
+    continued <- "{\\footnotesize Continued $\\downarrow$} \n"
   }
 
   lt  <- paste0(
@@ -168,7 +166,7 @@ tabtex <- function(DT,
     l,
     "\\endhead \n",
     "\\hline \n",
-    contdown,
+    continued,
     "\\endfoot \n",
     "\\endlastfoot \n")
 
