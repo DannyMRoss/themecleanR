@@ -31,7 +31,7 @@ devtools::install_github("DannyMRoss/themecleanR")
 
 ## Examples
 
-```{r library, echo=FALSE}
+```{r library, echo=FALSE, message=FALSE, warning=FALSE}
 attach(iris)
 library(ggplot2)
 library(extrafont) # read https://github.com/wch/extrafont for font configuration

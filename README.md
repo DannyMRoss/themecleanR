@@ -21,14 +21,6 @@ devtools::install_github("DannyMRoss/themecleanR")
 
 ## Examples
 
-    #> Registering fonts with R
-    #> Warning: replacing previous import 'data.table::first' by 'dplyr::first' when
-    #> loading 'themecleanR'
-    #> Warning: replacing previous import 'data.table::last' by 'dplyr::last' when
-    #> loading 'themecleanR'
-    #> Warning: replacing previous import 'data.table::between' by 'dplyr::between'
-    #> when loading 'themecleanR'
-
 ``` r
 # make plot
 plot <- ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) +
