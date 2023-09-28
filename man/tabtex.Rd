@@ -11,6 +11,8 @@ tabtex(
   cwidth = "1in",
   cletters = NULL,
   rowspace = NULL,
+  longtable = FALSE,
+  continued = NULL,
   ...
 )
 }
@@ -26,6 +28,10 @@ tabtex(
 \item{cletters}{add column sub-header labels, use option "default" for \link{A}, \link{B}, etc.}
 
 \item{rowspace}{add extra blank row after row number(s)}
+
+\item{longtable}{set longtable formatting}
+
+\item{continued}{add continued text to multi-page longtables}
 
 \item{...}{xtable print options}
 }

@@ -120,6 +120,8 @@ tabpdf <- function(tab,
 #' @param cwidth set column widths
 #' @param cletters add column sub-header labels, use option "default" for [A], [B], etc.
 #' @param rowspace add extra blank row after row number(s)
+#' @param longtable set longtable formatting
+#' @param continued add continued text to multi-page longtables
 #' @param ... xtable print options
 #'
 #' @return latex table from data.table
@@ -131,6 +133,7 @@ tabtex <- function(DT,
                    cwidth="1in",
                    cletters=NULL,
                    rowspace=NULL,
+                   longtable = FALSE,
                    continued=NULL,
                    ...) {
 
@@ -147,6 +150,10 @@ tabtex <- function(DT,
 
   bold <- function(x) paste0('{\\bfseries ', x, '}')
 
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$command <- c()
+
   if (is.null(cletters)){
     cletters <- NULL
   } else if (length(cletters)==1 && cletters=="default"){
@@ -155,24 +162,14 @@ tabtex <- function(DT,
     cletters <- c(cletters, rep("",ncol(DT)-length(cletters)))
   }
 
-  l <- paste0(paste0(cletters, collapse = " & "), " \n")
-
+  if (!is.null(cletters)){
+    l <- paste0(paste0(cletters, collapse = " & "), " \n")
+    addtorow$pos <- c(addtorow$pos, 0)
+    addtorow$command <- c(addtorow$command, l)
+  }
   if (!is.null(continued)){
     continued <- "{\\footnotesize Continued $\\downarrow$} \n"
   }
-
-  lt  <- paste0(
-    #"\\hline \n",
-    l,
-    "\\endhead \n",
-    "\\hline \n",
-    continued,
-    "\\endfoot \n",
-    "\\endlastfoot \n")
-
-  addtorow <- list()
-  addtorow$pos <- as.list(c(0))
-  addtorow$command <- c(lt)
 
   if (!is.null(rowspace)){
     addtorow$pos <- c(addtorow$pos, rowspace)
@@ -187,16 +184,38 @@ tabtex <- function(DT,
     addtorow$command <- c(addtorow$command, col)
   }
 
-  print(
-    t,
-    sanitize.colnames.function = bold,
-    include.rownames = FALSE,
-    tabular.environment = "longtable",
-    add.to.row = addtorow,
-    floating = FALSE,
-    caption.placement = "top",
-    comment = FALSE,
-    booktabs = TRUE,
-    ...
-  )
+  if (longtable){
+    addtorow$pos <- c(addtorow$pos, 0)
+    lt  <- paste0(
+      #"\\hline \n",
+      "\\endhead \n",
+      "\\hline \n",
+      continued,
+      "\\endfoot \n",
+      "\\endlastfoot \n")
+    addtorow$command <- c(addtorow$command, lt)
+
+    print(
+      t,
+      caption.placement = "top",
+      sanitize.colnames.function = bold,
+      include.rownames = FALSE,
+      floating = FALSE,
+      comment = FALSE,
+      tabular.environment = "longtable",
+      add.to.row = addtorow,
+      ...
+    )
+  } else{
+    print(
+      t,
+      caption.placement = "top",
+      sanitize.colnames.function = bold,
+      include.rownames = FALSE,
+      floating = FALSE,
+      comment = FALSE,
+      add.to.row = addtorow,
+      ...
+    )
+  }
 }
