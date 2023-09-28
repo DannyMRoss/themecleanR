@@ -11,6 +11,7 @@ tabtex(
   cwidth = "1in",
   cletters = NULL,
   rowspace = NULL,
+  boldrow = NULL,
   longtable = FALSE,
   continued = NULL,
   ...

@@ -133,6 +133,7 @@ tabtex <- function(DT,
                    cwidth="1in",
                    cletters=NULL,
                    rowspace=NULL,
+                   boldrow=NULL,
                    longtable = FALSE,
                    continued=NULL,
                    ...) {
@@ -149,10 +150,9 @@ tabtex <- function(DT,
   }
 
   bold <- function(x) paste0('{\\bfseries ', x, '}')
-
   addtorow <- list()
   addtorow$pos <- list()
-  addtorow$command <- c()
+  addtorow$command <- as.character()
 
   if (is.null(cletters)){
     cletters <- NULL
@@ -218,4 +218,46 @@ tabtex <- function(DT,
       ...
     )
   }
+}
+
+#' boldrows
+#'
+#' @param DT table
+#' @param rows rows to bold
+#'
+#' @return table with bold tags to sanitize
+#' @export
+#'
+boldrows <- function(DT, rows) {
+  bold <- function(x) paste0("BOLD0",x,"BOLD1")
+  DT[rows, ] <- lapply(DT[rows, ], bold)
+  return(DT)
+}
+
+#' sanitizex
+#'
+#' @param str latex code to sanitize
+#'
+#' @return sanitized table
+#' @export
+#'
+sanitizex <- function(str){
+  result <- str
+  result <- gsub("\\\\", "SANITIZE.BACKSLASH", result)
+  result <- gsub("$", "\\$", result, fixed = TRUE)
+  result <- gsub(">", "$>$", result, fixed = TRUE)
+  result <- gsub("<", "$<$", result, fixed = TRUE)
+  result <- gsub("|", "$|$", result, fixed = TRUE)
+  result <- gsub("BOLD0", "\\textbf{", result, fixed = TRUE)
+  result <- gsub("BOLD1", "}", result, fixed = TRUE)
+  #result <- gsub("{", "\\{", result, fixed = TRUE)
+  #result <- gsub("}", "\\}", result, fixed = TRUE)
+  result <- gsub("%", "\\%", result, fixed = TRUE)
+  result <- gsub("&", "\\&", result, fixed = TRUE)
+  result <- gsub("_", "\\_", result, fixed = TRUE)
+  result <- gsub("#", "\\#", result, fixed = TRUE)
+  result <- gsub("^", "\\verb|^|", result, fixed = TRUE)
+  result <- gsub("~", "\\~{}", result, fixed = TRUE)
+  result <- gsub("SANITIZE.BACKSLASH", "$\\backslash$", result, fixed = TRUE)
+  return(result)
 }
